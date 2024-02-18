@@ -3,7 +3,7 @@ export default function Header(params) {
     <div className="navbar shadow-sm bg-white border-b-2">
       <div className="flex-1">
         <img className="w-10 h-10" src="/logo.png" />
-        <a className="btn btn-ghost no-animation text-xl">SMG</a>
+        <a className="btn btn-ghost no-animation text-xl">SMG Group</a>
       </div>
       <div className="flex-none gap-2">
         {/* Right Side Panel */}

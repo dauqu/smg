@@ -2,6 +2,13 @@ import Header from "./header";
 import SubHeader from "./sub-header";
 
 export default function HomeScreen(params) {
+  const first_data = [
+    {
+      image: "",
+      title: "",
+      button: "",
+    },
+  ];
   return (
     <div className="flex flex-col">
       <div className="fixed top-0 left-0 right-0 z-10">
