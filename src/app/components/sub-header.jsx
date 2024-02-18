@@ -1,6 +1,6 @@
 export default function SubHeader(params) {
   return (
-    <ul className="menu lg:menu-horizontal w-full rounded-none bg-slate-900 text-white p-0 space-x-0">
+    <ul className="menu lg:menu-horizontal w-full rounded-none bg-slate-900 text-white p-0 space-x-0 hidden">
       <li>
         <a>
           <svg
