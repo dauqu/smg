@@ -31,8 +31,7 @@ export default function Page(params) {
     setLoading(true);
     await axios
       .get(
-        `http://65.20.66.239:3000/api/matches/${event_type_id}/${competition_id}`,
-        {}
+        `http://65.20.66.239:3000/api/markets-type/33040022`,
       )
       .then((res) => {
         setLoading(false);
