@@ -15,8 +15,8 @@ export default function Page(params) {
 
   const searchParams = useSearchParams()
  
-  const event_type_id = searchParams.get('event-type-id')
-  const competition_id = searchParams.get('competition-id')
+  const event_type_id = searchParams.get('eventtypeid')
+  const competition_id = searchParams.get('competitionid')
 
   async function getMatches() {
     setLoading(true);

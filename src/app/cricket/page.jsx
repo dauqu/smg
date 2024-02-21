@@ -118,7 +118,7 @@ export default function Page(params) {
                               className="btn btn-sm btn-info"
                               onClick={() => {
                                 router.push(
-                                  `/matches?event-type-id=${selected?.eventType}&competition-id=${item?.competition?.id}`
+                                  `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
                                 );
                               }}
                             >
