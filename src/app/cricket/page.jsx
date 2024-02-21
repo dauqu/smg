@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 import Header from "../components/header";
@@ -12,6 +13,8 @@ export default function Page(params) {
   const [loading, setLoading] = React.useState(true);
   const [loadingE, setLoadingE] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
+
+  const router = useRouter();
 
   async function mySitesFunction() {
     setLoading(true);
@@ -111,7 +114,16 @@ export default function Page(params) {
                           <td>{item?.competition?.name ?? "Loading..."}</td>
                           <td>{item?.competitionRegion ?? "Loading..."}</td>
                           <td>
-                            <button className="btn btn-sm btn-info">View Matches</button>
+                            <button
+                              className="btn btn-sm btn-info"
+                              onClick={() => {
+                                router.push(
+                                  `/matches?event-type-id=${selected?.eventType}&competition-id=${item?.competition?.id}`
+                                );
+                              }}
+                            >
+                              View Matches
+                            </button>
                           </td>
                         </tr>
                       ))}
