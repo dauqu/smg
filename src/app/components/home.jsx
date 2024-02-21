@@ -171,19 +171,32 @@ export default function HomeScreen(params) {
         <section class="bg-white dark:bg-gray-900">
           <div class="py-2 mx-auto max-w-screen-xl">
             <div class="grid gap-2 lg:grid-cols-2">
-              <article class="rounded-lg min-h-[30vh] border border-gray-200 shadow-md flex items-end bg-[url('https://laser247.online/assets/img/banner-sport1.webp')] bg-cover bg-no-repeat">
+              <article class="rounded-lg min-h-[30vh] border border-gray-200 shadow-md flex items-end bg-[url('https://laser247.online/assets/img/banner-sport1.webp')] bg-cover bg-no-repeat" onClick={() => {
+                        window.open(`/cricket`);
+                      }}>
                 <div class="flex justify-between items-center h-[40px] bg-gradient-to-r from-black px-2 w-full">
                   <div class="flex items-center justify-between w-full">
                     <span class="font-medium text-white">Sports</span>
-                    <button className="btn btn-sm">Play Now</button>
+                    <button
+                      className="btn btn-sm"
+                      onClick={() => {
+                        window.open(`/cricket`);
+                      }}
+                    >
+                      Play Now
+                    </button>
                   </div>
                 </div>
               </article>
-              <article class="rounded-lg min-h-[30vh] border border-gray-200 shadow-md flex items-end bg-[url('https://laser247.online/assets/img/sportbook.webp')] bg-cover bg-no-repeat">
+              <article class="rounded-lg min-h-[30vh] border border-gray-200 shadow-md flex items-end bg-[url('https://laser247.online/assets/img/sportbook.webp')] bg-cover bg-no-repeat" onClick={() => {
+                        window.open(`/cricket`);
+                      }}>
                 <div class="flex justify-between items-center h-[40px] bg-gradient-to-r from-black px-2 w-full">
                   <div class="flex items-center justify-between w-full">
                     <span class="font-medium text-white">Sports Book</span>
-                    <button className="btn btn-sm">Play Now</button>
+                    <button className="btn btn-sm" onClick={() => {
+                        window.open(`/cricket`);
+                      }}>Play Now</button>
                   </div>
                 </div>
               </article>
@@ -323,11 +336,7 @@ export default function HomeScreen(params) {
         <div className="flex justify-center">
           <div className="card w-96 bg-base-100">
             <figure className="px-10 pt-10">
-              <img
-                src="/logo.png"
-                alt="Shoes"
-                className="rounded-xl"
-              />
+              <img src="/logo.png" alt="Shoes" className="rounded-xl" />
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">SMG Group</h2>
