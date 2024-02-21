@@ -65,9 +65,16 @@ export default function Page(params) {
       {/* Top */}
       <div className="mt-32 p-5 w-full">
         {/* Tabs */}
-        <div className="flex h-[6vh] bg-slate-400 items-center px-5">
+        <div className="flex h-auto bg-slate-400 items-center p-2">
           {loading ? (
-            <span className="loading loading-spinner loading-xs"></span>
+            <div className="flex flex-col gap-4 w-52">
+              <div className="flex gap-4 items-center">
+                <div className="flex flex-col gap-4">
+                  <div className="skeleton h-4 w-20"></div>
+                  <div className="skeleton h-4 w-28"></div>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="flex space-x-2">
               {data &&
@@ -89,9 +96,16 @@ export default function Page(params) {
           )}
         </div>
         {/* Events Data */}
-        <div className="flex items-center px-5 w-full">
+        <div className="flex items-center px-5 w-full mt-5">
           {loadingE ? (
-            <span className="loading loading-spinner loading-xs"></span>
+            <div className="flex flex-col gap-4 w-full items-center justify-center">
+              <div className="flex gap-4 items-center">
+                <div className="flex flex-col gap-4">
+                  <div className="skeleton h-4 w-20"></div>
+                  <div className="skeleton h-4 w-28"></div>
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="flex space-x-2 h-[70vh] mt-10 w-full">
               <div className="overflow-x-auto w-full">
