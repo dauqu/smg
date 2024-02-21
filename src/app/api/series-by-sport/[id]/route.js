@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import axios from "axios";
 
 // To handle a POST request to /api
 export async function GET(request, { params }) {
