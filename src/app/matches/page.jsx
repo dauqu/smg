@@ -1,8 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useSearchParams } from 'next/navigation'
-
+import { useSearchParams } from "next/navigation";
 
 import axios from "axios";
 import Header from "../components/header";
@@ -13,15 +12,18 @@ export default function Page(params) {
   const [loading, setLoading] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
 
-  const searchParams = useSearchParams()
- 
-  const event_type_id = searchParams.get('eventtypeid')
-  const competition_id = searchParams.get('competitionid')
+  const searchParams = useSearchParams();
+
+  const event_type_id = searchParams.get("eventtypeid");
+  const competition_id = searchParams.get("competitionid");
 
   async function getMatches() {
     setLoading(true);
     await axios
-      .get(`http://65.20.66.239:3000/api/matches/${event_type_id}/${competition_id}`, {})
+      .get(
+        `http://65.20.66.239:3000/api/matches/${event_type_id}/${competition_id}`,
+        {}
+      )
       .then((res) => {
         setLoading(false);
         console.log(res.data);
