@@ -8,7 +8,10 @@ import SubHeader from "../components/sub-header";
 
 export default function Page(params) {
   const [data, setUsers] = React.useState([]);
+  const [myEventData, setMyEventData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [loadingE, setLoadingE] = React.useState(true);
+  const [selected, setSelected] = React.useState([]);
 
   async function mySitesFunction() {
     setLoading(true);
@@ -17,6 +20,7 @@ export default function Page(params) {
       .then((res) => {
         setLoading(false);
         console.log(res.data);
+        setSelected(res.data[0]);
         setUsers(res.data);
       })
       .catch((err) => {
@@ -25,38 +29,98 @@ export default function Page(params) {
       });
   }
 
+  async function myEventType() {
+    setLoadingE(true);
+    await axios
+      .get(
+        `http://65.20.66.239:3000/api/series-by-sport/${selected.eventType}`,
+        {}
+      )
+      .then((res) => {
+        setLoadingE(false);
+        setMyEventData(res.data);
+      })
+      .catch((err) => {
+        setLoadingE(false);
+      });
+  }
+
   React.useEffect(() => {
     mySitesFunction();
   }, []);
+
+  React.useEffect(() => {
+    myEventType();
+  }, [selected]);
+
   return (
     <div>
       <div className="fixed top-0 left-0 right-0 z-10">
         <Header />
         <SubHeader />
       </div>
-      <div className="mt-36">
+      {/* Top */}
+      <div className="mt-32 p-5 w-full">
         {/* Tabs */}
-        {loading ? (
-          "Loading..."
-        ) : (
-          <div role="tablist" className="tabs tabs-bordered">
-            {data &&
-              data.map((item) => (
-                <div>
-                  <input
-                    type="radio"
-                    name="my_tabs_1"
-                    role="tab"
-                    className="tab"
-                    aria-label="Tab 1"
-                  />
-                  <div role="tabpanel" className="tab-content p-10">
+        <div className="flex h-[6vh] bg-slate-400 items-center px-5">
+          {loading ? (
+            <span className="loading loading-spinner loading-xs"></span>
+          ) : (
+            <div className="flex space-x-2">
+              {data &&
+                data.map((item) => (
+                  <button
+                    className={`btn btn-sm ${
+                      selected.eventType == item.eventType
+                        ? "btn-active btn-outline"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      setSelected(item);
+                    }}
+                  >
                     {item?.name ?? "Loading..."}
-                  </div>
-                </div>
-              ))}
-          </div>
-        )}
+                  </button>
+                ))}
+            </div>
+          )}
+        </div>
+        {/* Events Data */}
+        <div className="flex items-center px-5 w-full">
+          {loadingE ? (
+            <span className="loading loading-spinner loading-xs"></span>
+          ) : (
+            <div className="flex space-x-2 h-[70vh] mt-10 w-full">
+              <div className="overflow-x-auto w-full">
+                <table className="table">
+                  {/* head */}
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Competition Name</th>
+                      <th>Region</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* row 1 */}
+                    {myEventData &&
+                      myEventData.map((item) => (
+                        <tr>
+                          <th>{item?.competition?.id ?? "Loading..."}</th>
+                          <td>{item?.competition?.name ?? "Loading..."}</td>
+                          <td>{item?.competitionRegion ?? "Loading..."}</td>
+                          <td>
+                            <button className="btn btn-sm btn-info">View Matches</button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
