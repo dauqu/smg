@@ -41,7 +41,7 @@ export default function SubHeader(params) {
         </a>
       </li>
       <li>
-        <a>
+        <a href="/cricket">
           Cricket
           <span className="badge badge-xs badge-info"></span>
         </a>
