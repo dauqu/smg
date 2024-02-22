@@ -140,8 +140,8 @@ export default function Page(params) {
                           <p>Total Matched: {event?.totalMatched}</p>
                         </div>
                         {/* Table */}
-                        <div className="overflow-x-auto mt-5">
-                          <table className="table">
+                        <div className="overflow-auto mt-5 w-full">
+                          <table className="table w-full">
                             {/* head */}
                             <thead>
                               <tr className="text-center">
@@ -166,34 +166,15 @@ export default function Page(params) {
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                          <div className="flex flex-col text-center">
+                                          <div className="flex flex-col text-center min-w-20">
                                             <span className="font-bold">
-                                              {back.size}
+                                              {back.price}
                                             </span>
-                                            {back.price}
+                                            {back.size}
                                           </div>
                                         </div>
                                       )
                                     )}
-
-                                    {/* <span>
-                                      {" "}
-                                      {runner.ex.availableToBack
-                                        .reduce(
-                                          (total, lay) => total + lay.price,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span>
-                                    <span>
-                                      {" "}
-                                      {runner.ex.availableToBack
-                                        .reduce(
-                                          (total, lay) => total + lay.size,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span> */}
                                   </td>
                                   <td className="bg-red-100 text-center">
                                     {runner?.ex?.availableToLay.map(
@@ -202,34 +183,15 @@ export default function Page(params) {
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                          <div className="flex flex-col text-center">
+                                          <div className="flex flex-col text-center min-w-20">
                                             <span className="font-bold">
-                                              {back.size}
+                                              {back.price}
                                             </span>
-                                            {back.price}
+                                            {back.size}
                                           </div>
                                         </div>
                                       )
                                     )}
-                                    {/* <span>
-                                      {" "}
-                                      {runner.ex.availableToLay
-                                        .reduce(
-                                          (total, lay) => total + lay.price,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span>
-                                    <br />
-                                    <span>
-                                      {" "}
-                                      {runner.ex.availableToLay
-                                        .reduce(
-                                          (total, lay) => total + lay.size,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span> */}
                                   </td>
                                   <td className="flex flex-col bg-pink-100 text-center">
                                     {runner?.ex?.availableToBack.map(
@@ -238,33 +200,15 @@ export default function Page(params) {
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                           <div className="flex flex-col text-center">
+                                          <div className="flex flex-col text-center min-w-20">
                                             <span className="font-bold">
-                                              {back.size}
+                                              {back.price}
                                             </span>
-                                            {back.price}
+                                            {back.size}
                                           </div>
                                         </div>
                                       )
                                     )}
-                                    {/* <span>
-                                      {" "}
-                                      {runner.ex.availableToBack
-                                        .reduce(
-                                          (total, lay) => total + lay.price,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span>
-                                    <span>
-                                      {" "}
-                                      {runner.ex.availableToBack
-                                        .reduce(
-                                          (total, lay) => total + lay.size,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span> */}
                                   </td>
                                   <td className="bg-blue-100 text-center">
                                     {runner?.ex?.availableToBack.map(
@@ -273,38 +217,19 @@ export default function Page(params) {
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                          <div className="flex flex-col text-center">
+                                          <div className="flex flex-col text-center min-w-20">
                                             <span className="font-bold">
-                                              {back.size}
+                                              {back.price}
                                             </span>
-                                            {back.price}
+                                            {back.size}
                                           </div>
                                         </div>
                                       )
                                     )}
-                                    {/* <span>
-                                      {" "}
-                                      {runner.lay
-                                        .reduce(
-                                          (total, lay) => total + lay.price,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span>
-                                    <br />
-                                    <span>
-                                      {" "}
-                                      {runner.back
-                                        .reduce(
-                                          (total, lay) => total + lay.size,
-                                          0
-                                        )
-                                        .toFixed(3)}
-                                    </span> */}
                                   </td>
                                   <td>
-                                    <div>{runner?.min}</div>
-                                    <div>{runner?.max}</div>
+                                    <div>{runner?.min ?? ""}</div>
+                                    <div>{runner?.max ?? ""}</div>
                                   </td>
                                 </tr>
                               ))}
