@@ -79,9 +79,9 @@ export default function Page(params) {
         <SubHeader />
       </div>
       {/* Top */}
-      <div className="mt-14 p-5 w-full">
+      <div className="mt-14 sm:mt-32 p-5 w-full">
         {/* Tabs */}
-        <div className="flex h-auto bg-slate-200 items-center rounded-md">
+        <div className="flex h-auto bg-slate-200 items-center rounded-md w-full">
           {loading ? (
             <div className="flex flex-col gap-4 w-52">
               <div className="flex gap-4 items-center">
@@ -92,14 +92,14 @@ export default function Page(params) {
               </div>
             </div>
           ) : (
-            <div className="p-2">
+            <div className="p-2 w-full relative">
               {data.map((market) => (
                 <div key={market.marketId}>
                   <h2 className="underline font-bold text-xl">
                     {market.marketName}
                   </h2>
                   <p>Total Matched: {market.totalMatched}</p>
-                  <ul className="flex space-x-2 mt-5 items-center justify-center">
+                  <ul className="flex space-x-2 mt-5 items-center justify-center overflow-scroll w-full">
                     {market.runners.map((runner) => (
                       <div>
                         <li
