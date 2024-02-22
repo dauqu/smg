@@ -11,19 +11,9 @@ export async function GET(request, { params }) {
       `http://142.93.36.1/api/v1/fetch_data?Action=listEvents&EventTypeID=${event_type_id}&CompetitionID=${competition_id}`
     );
 
-    const headers = {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
-      "Access-Control-Allow-Headers":
-        "Content-Type, Access-Control-Allow-Headers",
-      "Access-Control-Allow-Credentials": true,
-      "Accept-Encoding": "gzip, deflate",
-    };
-
     // Return the response data to the client
     return NextResponse.json(response.data, {
       status: response.status,
-      headers,
     });
   } catch (error) {
     // Handle any errors

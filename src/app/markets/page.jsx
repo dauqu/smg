@@ -141,7 +141,7 @@ export default function Page(params) {
                         </div>
                         {/* Table */}
                         <div className="overflow-auto mt-5 w-full">
-                          <table className="table w-full">
+                          <table className="table w-full space-y-2">
                             {/* head */}
                             <thead>
                               <tr className="text-center">
@@ -166,7 +166,7 @@ export default function Page(params) {
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                          <div className="flex flex-col text-center min-w-20">
+                                          <div className="flex flex-col text-center min-w-20 max-w-[24]">
                                             <span className="font-bold">
                                               {back.price}
                                             </span>
