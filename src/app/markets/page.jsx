@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import axios from "axios";
 import Header from "../components/header";
@@ -14,17 +15,34 @@ export default function Page(params) {
   const [loadingE, setLoadingE] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
 
-  let queryString = "";
-  let urlParams = null;
+  const searchParams = useSearchParams();
 
-  if (typeof window !== "undefined") {
-    queryString = window.location.search;
-    urlParams = new URLSearchParams(queryString);
-  }
+  const event_id = searchParams.get("eventid");
 
-  const event_id = urlParams ? urlParams.get("eventid") : null;
+  //   let queryString = "";
+  //   let urlParams = null;
+
+  //   if (typeof window !== "undefined") {
+  //     queryString = window.location.search;
+  //     urlParams = new URLSearchParams(queryString);
+  //   }
+
+  //   const event_id = urlParams ? urlParams.get("eventid") : null;
 
   const router = useRouter();
+
+  async function myEventType() {
+    setLoadingE(true);
+    await axios
+      .get(`https://onlinebookbazar.com/api/market-odds/${selected.marketId}`)
+      .then((res) => {
+        setLoadingE(false);
+        setMyEventData(res.data);
+      })
+      .catch((err) => {
+        setLoadingE(false);
+      });
+  }
 
   async function mySitesFunction() {
     setLoading(true);
@@ -43,31 +61,13 @@ export default function Page(params) {
       });
   }
 
-  async function myEventType() {
-    setLoadingE(true);
-    await axios
-      .get(`https://onlinebookbazar.com/api/market-odds/${selected.marketId}`)
-      .then((res) => {
-        setLoadingE(false);
-        setMyEventData(res.data);
-      })
-      .catch((err) => {
-        setLoadingE(false);
-      });
-  }
-
   React.useEffect(() => {
     mySitesFunction();
   }, []);
 
   React.useEffect(() => {
     mySitesFunction();
-  }, [event_id]);
-
-  React.useEffect(() => {
-    console.log(selected);
-    myEventType();
-  }, [selected]);
+  }, [searchParams]);
 
   return (
     <div>

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-// import { useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 import axios from "axios";
 import Header from "../components/header";
@@ -16,17 +16,21 @@ export default function Page(params) {
   const router = useRouter();
 
   //   const searchParams = useSearchParams();
+  const searchParams = useSearchParams();
 
-  let queryString = "";
-  let urlParams = null;
+  const event_type_id = searchParams.get("eventtypeid");
+  const competition_id = searchParams.get("competitionid");
 
-  if (typeof window !== "undefined") {
-    queryString = window.location.search;
-    urlParams = new URLSearchParams(queryString);
-  }
+//   let queryString = "";
+//   let urlParams = null;
 
-  const event_type_id = urlParams ? urlParams.get("eventtypeid") : null;
-  const competition_id = urlParams ? urlParams.get("competitionid") : null;
+//   if (typeof window !== "undefined") {
+//     queryString = window.location.search;
+//     urlParams = new URLSearchParams(queryString);
+//   }
+
+//   const event_type_id = urlParams ? urlParams.get("eventtypeid") : null;
+//   const competition_id = urlParams ? urlParams.get("competitionid") : null;
   //   const event_type_id = searchParams.get("eventtypeid");
   //   const competition_id = searchParams.get("competitionid");
 
