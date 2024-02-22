@@ -6,11 +6,14 @@ import * as React from "react";
 import axios from "axios";
 import Header from "../components/header";
 import SubHeader from "../components/sub-header";
+import { useRouter } from "next/navigation";
 
 export default function Page(params) {
   const [data, setUsers] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
+
+  const router = useRouter();
 
   //   const searchParams = useSearchParams();
 
@@ -94,8 +97,12 @@ export default function Page(params) {
                             <button
                               className="btn btn-sm btn-info"
                               onClick={() => {
-                                window.open(
-                                  `/markets?eventid=${item?.event?.id}`
+                                // window.open(
+                                //   `/markets?eventid=${item?.event?.id}`
+                                // );
+
+                                router.push(
+                                    `/markets?eventid=${item?.event?.id}`
                                 );
                               }}
                             >

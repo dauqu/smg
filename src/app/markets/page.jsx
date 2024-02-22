@@ -35,6 +35,7 @@ export default function Page(params) {
         console.log(res.data);
         setUsers(res?.data);
         setSelected(res?.data[0]);
+        myEventType();
       })
       .catch((err) => {
         console.log(err);
@@ -156,24 +157,26 @@ export default function Page(params) {
                                 <tr>
                                   <th>{runner?.runner}</th>
                                   <td className="flex flex-col bg-green-100 text-center">
-                                    {/* {runner.ex.availableToBack.map(
+                                    {runner.ex.availableToBack.map(
                                       (back, index) => (
                                         <div
                                           key={index}
-                                          className="flex flex-col space-y-2 p-1 bg-slate-200"
+                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
                                           <div className="flex flex-col text-center">
                                             <span className="font-bold">
                                               {back.level}
                                             </span>
-                                            <br />
+                                            <span className="font-bold">
+                                              {back.size}
+                                            </span>
                                             {back.price}
                                           </div>
                                         </div>
                                       )
-                                    )} */}
+                                    )}
 
-                                    <span>
+                                    {/* <span>
                                       {" "}
                                       {runner.ex.availableToBack
                                         .reduce(
@@ -190,10 +193,28 @@ export default function Page(params) {
                                           0
                                         )
                                         .toFixed(3)}
-                                    </span>
+                                    </span> */}
                                   </td>
                                   <td className="bg-red-100 text-center">
-                                    <span>
+                                    {runner.ex.availableToLay.map(
+                                      (back, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
+                                        >
+                                          <div className="flex flex-col text-center">
+                                            <span className="font-bold">
+                                              {back.level}
+                                            </span>
+                                            <span className="font-bold">
+                                              {back.size}
+                                            </span>
+                                            {back.price}
+                                          </div>
+                                        </div>
+                                      )
+                                    )}
+                                    {/* <span>
                                       {" "}
                                       {runner.ex.availableToLay
                                         .reduce(
@@ -211,10 +232,28 @@ export default function Page(params) {
                                           0
                                         )
                                         .toFixed(3)}
-                                    </span>
+                                    </span> */}
                                   </td>
                                   <td className="flex flex-col bg-pink-100 text-center">
-                                    <span>
+                                    {runner.ex.availableToBack.map(
+                                      (back, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex flex-col p-1 bg-slate-200 border-[1px] border-black"
+                                        >
+                                          <div className="flex flex-col text-center">
+                                            <span className="font-bold">
+                                              {back.level}
+                                            </span>
+                                            <span className="font-bold">
+                                              {back.size}
+                                            </span>
+                                            {back.price}
+                                          </div>
+                                        </div>
+                                      )
+                                    )}
+                                    {/* <span>
                                       {" "}
                                       {runner.ex.availableToBack
                                         .reduce(
@@ -231,10 +270,28 @@ export default function Page(params) {
                                           0
                                         )
                                         .toFixed(3)}
-                                    </span>
+                                    </span> */}
                                   </td>
                                   <td className="bg-blue-100 text-center">
-                                    <span>
+                                    {runner.ex.availableToBack.map(
+                                      (back, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
+                                        >
+                                          <div className="flex flex-col text-center">
+                                            <span className="font-bold">
+                                              {back.level}
+                                            </span>
+                                            <span className="font-bold">
+                                              {back.size}
+                                            </span>
+                                            {back.price}
+                                          </div>
+                                        </div>
+                                      )
+                                    )}
+                                    {/* <span>
                                       {" "}
                                       {runner.lay
                                         .reduce(
@@ -252,7 +309,7 @@ export default function Page(params) {
                                           0
                                         )
                                         .toFixed(3)}
-                                    </span>
+                                    </span> */}
                                   </td>
                                   <td>
                                     <div>{runner?.min}</div>
