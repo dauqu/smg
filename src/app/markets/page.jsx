@@ -53,7 +53,6 @@ export default function Page(params) {
         console.log(res.data);
         setUsers(res?.data);
         setSelected(res?.data[0]);
-        myEventType();
       })
       .catch((err) => {
         console.log(err);
@@ -68,6 +67,10 @@ export default function Page(params) {
   React.useEffect(() => {
     mySitesFunction();
   }, [searchParams]);
+
+  React.useEffect(() => {
+    myEventType();
+  }, [selected.marketId]);
 
   return (
     <div>
