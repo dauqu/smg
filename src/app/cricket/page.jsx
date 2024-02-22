@@ -131,10 +131,10 @@ export default function Page(params) {
                             <button
                               className="btn btn-sm btn-info"
                               onClick={() => {
-                                // router.push(
-                                //   `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
-                                // );
-                                window.open(`/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`);
+                                router.push(
+                                    `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
+                                );
+                                // window.open(`/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`);
                               }}
                             >
                               View Matches

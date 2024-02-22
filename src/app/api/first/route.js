@@ -15,6 +15,7 @@ export async function GET(request) {
       "Access-Control-Allow-Headers":
         "Content-Type, Access-Control-Allow-Headers",
       "Access-Control-Allow-Credentials": true,
+      "Accept-Encoding": "gzip, deflate",
     };
 
     // Return the response data to the client
