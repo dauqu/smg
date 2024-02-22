@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-// import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 import Header from "../components/header";
@@ -9,10 +9,10 @@ import SubHeader from "../components/sub-header";
 
 export default function Page(params) {
   const [data, setUsers] = React.useState([]);
+  const [myEventData, setMyEventData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [loadingE, setLoadingE] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
-
-  //   const searchParams = useSearchParams();
 
   let queryString = "";
   let urlParams = null;
@@ -22,22 +22,19 @@ export default function Page(params) {
     urlParams = new URLSearchParams(queryString);
   }
 
-  const event_type_id = urlParams ? urlParams.get("eventtypeid") : null;
-  const competition_id = urlParams ? urlParams.get("competitionid") : null;
-  //   const event_type_id = searchParams.get("eventtypeid");
-  //   const competition_id = searchParams.get("competitionid");
+  const event_id = urlParams ? urlParams.get("eventid") : null;
 
-  async function getMatches() {
+  const router = useRouter();
+
+  async function mySitesFunction() {
     setLoading(true);
     await axios
-      .get(
-        `http://65.20.66.239:3000/api/markets-type/33040022`,
-      )
+      .get(`http://onlinebookbazar.com/api/markets-type/33040022`)
       .then((res) => {
         setLoading(false);
         console.log(res.data);
-        setSelected(res.data[0]);
-        setUsers(res.data);
+        setUsers(res?.data);
+        setSelected(res?.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -45,9 +42,27 @@ export default function Page(params) {
       });
   }
 
+  async function myEventType() {
+    setLoadingE(true);
+    await axios
+      .get(`http://onlinebookbazar.com/api/market-odds/1.225128440`)
+      .then((res) => {
+        setLoadingE(false);
+        setMyEventData(res.data);
+      })
+      .catch((err) => {
+        setLoadingE(false);
+      });
+  }
+
   React.useEffect(() => {
-    getMatches();
-  }, []);
+    mySitesFunction();
+  }, [event_id]);
+
+  React.useEffect(() => {
+    console.log(selected);
+    myEventType();
+  }, [selected]);
 
   return (
     <div>
@@ -57,8 +72,8 @@ export default function Page(params) {
       </div>
       {/* Top */}
       <div className="mt-32 p-5 w-full">
-        {/* Events Data */}
-        <div className="flex items-center px-5 w-full">
+        {/* Tabs */}
+        <div className="flex h-auto bg-slate-400 items-center p-2">
           {loading ? (
             <div className="flex flex-col gap-4 w-52">
               <div className="flex gap-4 items-center">
@@ -69,42 +84,168 @@ export default function Page(params) {
               </div>
             </div>
           ) : (
+            <div>
+              {data.map((market) => (
+                <div key={market.marketId}>
+                  <h2>{market.marketName}</h2>
+                  <p>Total Matched: {market.totalMatched}</p>
+                  <ul className="flex space-x-2 mt-5">
+                    {market.runners.map((runner) => (
+                      <li
+                        key={runner.selectionId}
+                        className="btn btn-sm"
+                        // onClick={() => {
+                        //   setSelected(runner);
+                        // }}
+                      >
+                        {runner.runnerName}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        {/* Events Data */}
+        <div className="flex items-center px-5 w-full mt-5">
+          {loadingE ? (
+            <div className="flex flex-col gap-4 w-full items-center justify-center">
+              <div className="flex gap-4 items-center">
+                <div className="flex flex-col gap-4">
+                  <div className="skeleton h-4 w-20"></div>
+                  <div className="skeleton h-4 w-28"></div>
+                </div>
+              </div>
+            </div>
+          ) : (
             <div className="flex space-x-2 h-[70vh] mt-10 w-full">
-              <div className="overflow-x-auto w-full">
-                <table className="table">
-                  {/* head */}
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Event Name</th>
-                      <th>Date</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* row 1 */}
-                    {data &&
-                      data.map((item) => (
-                        <tr>
-                          <th>{item?.event?.id ?? "Loading..."}</th>
-                          <td>{item?.event?.name ?? "Loading..."}</td>
-                          <td>{item?.event?.openDate ?? "Loading..."}</td>
-                          <td>
-                            <button
-                              className="btn btn-sm btn-info"
-                              onClick={() => {
-                                window.open(
-                                  `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
-                                );
-                              }}
-                            >
-                              View Markets
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+              <div className="flex space-x-2 h-[70vh] mt-10 w-full">
+                <div className="overflow-x-auto w-full">
+                  {myEventData &&
+                    myEventData.map((event) => (
+                      <div key={event.eventid}>
+                        <div className="flex space-x-5">
+                          <h2>Event ID: {event?.eventid}</h2>
+                          <p>Market: {event?.market}</p>
+                          <p>Status: {event?.status}</p>
+                          <p>Total Matched: {event?.totalMatched}</p>
+                        </div>
+                        {/* Table */}
+                        <div className="overflow-x-auto mt-5">
+                          <table className="table">
+                            {/* head */}
+                            <thead>
+                              <tr className="text-center">
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>Back</th>
+                                <th>Lay</th>
+                                <th>Min/Max</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              {/* row 1 */}
+                              {event.runners.map((runner) => (
+                                <tr>
+                                  <th>{runner?.runner}</th>
+                                  <td className="flex flex-col bg-green-100 text-center">
+                                    {/* {runner.ex.availableToBack.map(
+                                      (back, index) => (
+                                        <div
+                                          key={index}
+                                          className="flex flex-col space-y-2 p-1 bg-slate-200"
+                                        >
+                                          <div className="flex flex-col text-center">
+                                            <span className="font-bold">
+                                              {back.level}
+                                            </span>
+                                            <br />
+                                            {back.price}
+                                          </div>
+                                        </div>
+                                      )
+                                    )} */}
+
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToBack.reduce(
+                                        (total, lay) => total + lay.price,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToBack.reduce(
+                                        (total, lay) => total + lay.size,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                  </td>
+                                  <td className="bg-red-100 text-center">
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToLay.reduce(
+                                        (total, lay) => total + lay.price,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                    <br />
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToLay.reduce(
+                                        (total, lay) => total + lay.size,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                  </td>
+                                  <td className="flex flex-col bg-pink-100 text-center">
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToBack.reduce(
+                                        (total, lay) => total + lay.price,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                    <span>
+                                      {" "}
+                                      {runner.ex.availableToBack.reduce(
+                                        (total, lay) => total + lay.size,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                  </td>
+                                  <td className="bg-blue-100 text-center">
+                                    <span>
+                                      {" "}
+                                      {runner.lay.reduce(
+                                        (total, lay) => total + lay.price,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                    <br />
+                                    <span>
+                                      {" "}
+                                      {runner.back.reduce(
+                                        (total, lay) => total + lay.size,
+                                        0
+                                      ).toFixed(3)}
+                                    </span>
+                                  </td>
+                                  <td>
+                                    <div>{runner?.min}</div>
+                                    <div>{runner?.max}</div>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    ))}
+                </div>
               </div>
             </div>
           )}

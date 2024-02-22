@@ -95,7 +95,7 @@ export default function Page(params) {
                               className="btn btn-sm btn-info"
                               onClick={() => {
                                 window.open(
-                                  `/markets?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
+                                  `/markets?eventid=${item?.event?.id}`
                                 );
                               }}
                             >
