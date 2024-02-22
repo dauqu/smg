@@ -57,6 +57,10 @@ export default function Page(params) {
 
   React.useEffect(() => {
     mySitesFunction();
+  }, []);
+
+  React.useEffect(() => {
+    mySitesFunction();
   }, [event_id]);
 
   React.useEffect(() => {
@@ -171,67 +175,83 @@ export default function Page(params) {
 
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToBack.reduce(
-                                        (total, lay) => total + lay.price,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToBack
+                                        .reduce(
+                                          (total, lay) => total + lay.price,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToBack.reduce(
-                                        (total, lay) => total + lay.size,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToBack
+                                        .reduce(
+                                          (total, lay) => total + lay.size,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                   </td>
                                   <td className="bg-red-100 text-center">
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToLay.reduce(
-                                        (total, lay) => total + lay.price,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToLay
+                                        .reduce(
+                                          (total, lay) => total + lay.price,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                     <br />
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToLay.reduce(
-                                        (total, lay) => total + lay.size,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToLay
+                                        .reduce(
+                                          (total, lay) => total + lay.size,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                   </td>
                                   <td className="flex flex-col bg-pink-100 text-center">
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToBack.reduce(
-                                        (total, lay) => total + lay.price,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToBack
+                                        .reduce(
+                                          (total, lay) => total + lay.price,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                     <span>
                                       {" "}
-                                      {runner.ex.availableToBack.reduce(
-                                        (total, lay) => total + lay.size,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.ex.availableToBack
+                                        .reduce(
+                                          (total, lay) => total + lay.size,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                   </td>
                                   <td className="bg-blue-100 text-center">
                                     <span>
                                       {" "}
-                                      {runner.lay.reduce(
-                                        (total, lay) => total + lay.price,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.lay
+                                        .reduce(
+                                          (total, lay) => total + lay.price,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                     <br />
                                     <span>
                                       {" "}
-                                      {runner.back.reduce(
-                                        (total, lay) => total + lay.size,
-                                        0
-                                      ).toFixed(3)}
+                                      {runner.back
+                                        .reduce(
+                                          (total, lay) => total + lay.size,
+                                          0
+                                        )
+                                        .toFixed(3)}
                                     </span>
                                   </td>
                                   <td>
