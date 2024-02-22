@@ -1,0 +1,171 @@
+[
+  {
+    "eventid": "33043281",
+    "marketId": "1.225174097",
+    "market": "Match Odds",
+    "updateTime": "2024-02-22T23:29:14",
+    "status": "OPEN",
+    "inplay": false,
+    "totalMatched": 3057.45,
+    "active": true,
+    "markettype": "ODDS",
+    "runners": [
+      {
+        "selectionId": 17162689,
+        "runner": "Multan Sultans",
+        "status": "ACTIVE",
+        "lastPriceTraded": 1.81,
+        "removalDate": "1900-01-01T00:00:00",
+        "ex": {
+          "availableToBack": [
+            {
+              "level": 0,
+              "price": 1.8,
+              "size": 18
+            },
+            {
+              "level": 1,
+              "price": 1.79,
+              "size": 27
+            },
+            {
+              "level": 2,
+              "price": 1.78,
+              "size": 14
+            }
+          ],
+          "availableToLay": [
+            {
+              "level": 0,
+              "price": 1.84,
+              "size": 16
+            },
+            {
+              "level": 1,
+              "price": 1.85,
+              "size": 17
+            },
+            {
+              "level": 2,
+              "price": 1.86,
+              "size": 21
+            }
+          ]
+        },
+        "back": [
+          {
+            "level": 0,
+            "price": 1.8,
+            "size": 18
+          },
+          {
+            "level": 1,
+            "price": 1.79,
+            "size": 27
+          },
+          {
+            "level": 2,
+            "price": 1.78,
+            "size": 14
+          }
+        ],
+        "lay": [
+          {
+            "level": 0,
+            "price": 1.84,
+            "size": 16
+          },
+          {
+            "level": 1,
+            "price": 1.85,
+            "size": 17
+          },
+          {
+            "level": 2,
+            "price": 1.86,
+            "size": 21
+          }
+        ]
+      },
+      {
+        "selectionId": 10791812,
+        "runner": "Peshawar Zalmi",
+        "status": "ACTIVE",
+        "lastPriceTraded": 2.22,
+        "removalDate": "1900-01-01T00:00:00",
+        "ex": {
+          "availableToBack": [
+            {
+              "level": 0,
+              "price": 2.18,
+              "size": 13
+            },
+            {
+              "level": 1,
+              "price": 2.16,
+              "size": 33
+            },
+            {
+              "level": 2,
+              "price": 2.14,
+              "size": 437
+            }
+          ],
+          "availableToLay": [
+            {
+              "level": 0,
+              "price": 2.26,
+              "size": 14
+            },
+            {
+              "level": 1,
+              "price": 2.28,
+              "size": 21
+            },
+            {
+              "level": 2,
+              "price": 2.3,
+              "size": 20
+            }
+          ]
+        },
+        "back": [
+          {
+            "level": 0,
+            "price": 2.18,
+            "size": 13
+          },
+          {
+            "level": 1,
+            "price": 2.16,
+            "size": 33
+          },
+          {
+            "level": 2,
+            "price": 2.14,
+            "size": 437
+          }
+        ],
+        "lay": [
+          {
+            "level": 0,
+            "price": 2.26,
+            "size": 14
+          },
+          {
+            "level": 1,
+            "price": 2.28,
+            "size": 21
+          },
+          {
+            "level": 2,
+            "price": 2.3,
+            "size": 20
+          }
+        ]
+      }
+    ],
+    "min": "",
+    "max": ""
+  }
+]

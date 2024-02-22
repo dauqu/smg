@@ -21,16 +21,16 @@ export default function Page(params) {
   const event_type_id = searchParams.get("eventtypeid");
   const competition_id = searchParams.get("competitionid");
 
-//   let queryString = "";
-//   let urlParams = null;
+  //   let queryString = "";
+  //   let urlParams = null;
 
-//   if (typeof window !== "undefined") {
-//     queryString = window.location.search;
-//     urlParams = new URLSearchParams(queryString);
-//   }
+  //   if (typeof window !== "undefined") {
+  //     queryString = window.location.search;
+  //     urlParams = new URLSearchParams(queryString);
+  //   }
 
-//   const event_type_id = urlParams ? urlParams.get("eventtypeid") : null;
-//   const competition_id = urlParams ? urlParams.get("competitionid") : null;
+  //   const event_type_id = urlParams ? urlParams.get("eventtypeid") : null;
+  //   const competition_id = urlParams ? urlParams.get("competitionid") : null;
   //   const event_type_id = searchParams.get("eventtypeid");
   //   const competition_id = searchParams.get("competitionid");
 
@@ -64,7 +64,7 @@ export default function Page(params) {
         <SubHeader />
       </div>
       {/* Top */}
-      <div className="mt-32 p-5 w-full">
+      <div className="mt-28 p-5 w-full">
         {/* Events Data */}
         <div className="flex items-center px-5 w-full">
           {loading ? (
@@ -77,41 +77,67 @@ export default function Page(params) {
               </div>
             </div>
           ) : (
-            <div className="flex space-x-2 h-[70vh] mt-10 w-full">
-              <div className="overflow-x-auto w-full">
-                <table className="table">
-                  {/* head */}
-                  <thead>
+            <div className="flex space-x-2 h-[80vh] mt-5 w-full">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    Our products
+                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                      Browse a list of Flowbite products designed to help you
+                      work and play, stay organized, get answers, keep in touch,
+                      grow your business, and more.
+                    </p>
+                  </caption>
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th>ID</th>
-                      <th>Event Name</th>
-                      <th>Date</th>
-                      <th></th>
+                      <th scope="col" class="px-6 py-3">
+                        Market Count
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Event Name
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Country Code
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Date
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">View</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/* row 1 */}
                     {data &&
                       data.map((item) => (
-                        <tr>
-                          <th>{item?.event?.id ?? "Loading..."}</th>
-                          <td>{item?.event?.name ?? "Loading..."}</td>
-                          <td>{item?.event?.openDate ?? "Loading..."}</td>
-                          <td>
-                            <button
-                              className="btn btn-sm btn-info"
+                        <tr class="bg-white dark:bg-gray-800">
+                          <th
+                            scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          >
+                            {item?.marketCount ?? "Loading..."}
+                          </th>
+                          <td class="px-6 py-4">
+                            {item?.event?.name ?? "Loading..."}
+                          </td>
+                          <td class="px-6 py-4">
+                            {item?.event?.countryCode ?? "Loading..."}
+                          </td>
+                          <td class="px-6 py-4">
+                            {item?.event?.openDate ?? "Loading..."}
+                          </td>
+                          <td class="px-6 py-4 text-right">
+                            <a
+                              href="#"
+                              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                               onClick={() => {
-                                // window.open(
-                                //   `/markets?eventid=${item?.event?.id}`
-                                // );
-
                                 router.push(
-                                    `/markets?eventid=${item?.event?.id}`
+                                  `/markets?eventid=${item?.event?.id}`
                                 );
                               }}
                             >
-                              View Markets
-                            </button>
+                              View
+                            </a>
                           </td>
                         </tr>
                       ))}

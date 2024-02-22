@@ -63,9 +63,9 @@ export default function Page(params) {
         <SubHeader />
       </div>
       {/* Top */}
-      <div className="mt-32 p-5 w-full">
+      <div className="mt-16 sm:mt-28 p-2 w-full">
         {/* Tabs */}
-        <div className="flex h-auto bg-slate-400 items-center p-2">
+        <div className="flex h-auto bg-slate-200 rounded-md items-center p-2 w-full overflow-x-scroll shadow-sm">
           {loading ? (
             <div className="flex flex-col gap-4 w-52">
               <div className="flex gap-4 items-center">
@@ -107,38 +107,61 @@ export default function Page(params) {
               </div>
             </div>
           ) : (
-            <div className="flex space-x-2 h-[70vh] mt-10 w-full">
-              <div className="overflow-x-auto w-full">
-                <table className="table">
-                  {/* head */}
-                  <thead>
+            <div className="flex space-x-2 h-[76vh] mt-5 w-full">
+              <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    Our products
+                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                      Browse a list of Flowbite products designed to help you
+                      work and play, stay organized, get answers, keep in touch,
+                      grow your business, and more.
+                    </p>
+                  </caption>
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                      <th>ID</th>
-                      <th>Competition Name</th>
-                      <th>Region</th>
-                      <th></th>
+                      <th scope="col" class="px-6 py-3">
+                        Market Count
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Competition Name
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        Region
+                      </th>
+                      <th scope="col" class="px-6 py-3">
+                        <span class="sr-only">View</span>
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {/* row 1 */}
                     {myEventData &&
                       myEventData.map((item) => (
-                        <tr>
-                          <th>{item?.competition?.id ?? "Loading..."}</th>
-                          <td>{item?.competition?.name ?? "Loading..."}</td>
-                          <td>{item?.competitionRegion ?? "Loading..."}</td>
-                          <td>
-                            <button
-                              className="btn btn-sm btn-info"
+                        <tr class="bg-white dark:bg-gray-800">
+                          <th
+                            scope="row"
+                            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                          >
+                            {item?.marketCount ?? "Loading..."}
+                          </th>
+                          <td class="px-6 py-4">
+                            {item?.competition?.name ?? "Loading..."}
+                          </td>
+                          <td class="px-6 py-4">
+                            {item?.competitionRegion ?? "Loading..."}
+                          </td>
+                          <td class="px-6 py-4 text-right">
+                            <a
+                              href={`/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`}
+                              class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                               onClick={() => {
                                 router.push(
-                                    `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
+                                  `/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`
                                 );
-                                // window.open(`/matches?eventtypeid=${selected?.eventType}&competitionid=${item?.competition?.id}`);
                               }}
                             >
-                              View Matches
-                            </button>
+                              View
+                            </a>
                           </td>
                         </tr>
                       ))}
