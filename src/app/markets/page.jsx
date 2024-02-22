@@ -153,20 +153,17 @@ export default function Page(params) {
 
                             <tbody>
                               {/* row 1 */}
-                              {event.runners.map((runner) => (
+                              {event?.runners?.map((runner) => (
                                 <tr>
                                   <th>{runner?.runner}</th>
                                   <td className="flex flex-col bg-green-100 text-center">
-                                    {runner.ex.availableToBack.map(
+                                    {runner?.ex?.availableToBack.map(
                                       (back, index) => (
                                         <div
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
                                           <div className="flex flex-col text-center">
-                                            <span className="font-bold">
-                                              {back.level}
-                                            </span>
                                             <span className="font-bold">
                                               {back.size}
                                             </span>
@@ -196,16 +193,13 @@ export default function Page(params) {
                                     </span> */}
                                   </td>
                                   <td className="bg-red-100 text-center">
-                                    {runner.ex.availableToLay.map(
+                                    {runner?.ex?.availableToLay.map(
                                       (back, index) => (
                                         <div
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
                                           <div className="flex flex-col text-center">
-                                            <span className="font-bold">
-                                              {back.level}
-                                            </span>
                                             <span className="font-bold">
                                               {back.size}
                                             </span>
@@ -235,16 +229,13 @@ export default function Page(params) {
                                     </span> */}
                                   </td>
                                   <td className="flex flex-col bg-pink-100 text-center">
-                                    {runner.ex.availableToBack.map(
+                                    {runner?.ex?.availableToBack.map(
                                       (back, index) => (
                                         <div
                                           key={index}
                                           className="flex flex-col p-1 bg-slate-200 border-[1px] border-black"
                                         >
                                           <div className="flex flex-col text-center">
-                                            <span className="font-bold">
-                                              {back.level}
-                                            </span>
                                             <span className="font-bold">
                                               {back.size}
                                             </span>
@@ -273,16 +264,13 @@ export default function Page(params) {
                                     </span> */}
                                   </td>
                                   <td className="bg-blue-100 text-center">
-                                    {runner.ex.availableToBack.map(
+                                    {runner?.ex?.availableToBack.map(
                                       (back, index) => (
                                         <div
                                           key={index}
                                           className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
                                           <div className="flex flex-col text-center">
-                                            <span className="font-bold">
-                                              {back.level}
-                                            </span>
                                             <span className="font-bold">
                                               {back.size}
                                             </span>

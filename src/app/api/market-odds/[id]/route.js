@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 
 // To handle a POST request to /api
-export async function GET(request, { params }) {
+export async function GET(request, { params }, res) {
   const param = params.id;
   try {
     // Make a GET request to https://api.daucu.site
@@ -20,10 +20,18 @@ export async function GET(request, { params }) {
     };
 
     // Return the response data to the client
-    return NextResponse.json(response.data, {
-      status: response.status,
-      headers,
+    // return NextResponse.json(response.data, {
+    //   status: response.status,
+    //   headers,
+    // });
+
+    // Set the headers
+    Object.keys(headers).forEach((key) => {
+      res.setHeader(key, headers[key]);
     });
+
+    // Return the response data to the client
+    res.status(response.status).json(response.data);
   } catch (error) {
     // Handle any errors
     console.error("Error making GET request:", error.message);

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 
 // To handle a POST request to /api
-export async function GET(request, { params }) {
+export async function GET(request, { params }, res) {
   const param = params.id;
   try {
     // Make a GET request to https://api.daucu.site
