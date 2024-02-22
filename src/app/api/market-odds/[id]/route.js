@@ -20,18 +20,10 @@ export async function GET(request, { params }, res) {
     };
 
     // Return the response data to the client
-    // return NextResponse.json(response.data, {
-    //   status: response.status,
-    //   headers,
-    // });
-
-    // Set the headers
-    Object.keys(headers).forEach((key) => {
-      res.setHeader(key, headers[key]);
+    return NextResponse.json(response.data, {
+      status: response.status,
+      headers,
     });
-
-    // Return the response data to the client
-    res.status(response.status).json(response.data);
   } catch (error) {
     // Handle any errors
     console.error("Error making GET request:", error.message);
