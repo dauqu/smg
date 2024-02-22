@@ -29,7 +29,7 @@ export default function Page(params) {
   async function mySitesFunction() {
     setLoading(true);
     await axios
-      .get(`http://onlinebookbazar.com/api/markets-type/${event_id}`)
+      .get(`https://onlinebookbazar.com/api/markets-type/${event_id}`)
       .then((res) => {
         setLoading(false);
         console.log(res.data);
@@ -45,7 +45,7 @@ export default function Page(params) {
   async function myEventType() {
     setLoadingE(true);
     await axios
-      .get(`http://onlinebookbazar.com/api/market-odds/${selected.marketId}`)
+      .get(`https://onlinebookbazar.com/api/market-odds/${selected.marketId}`)
       .then((res) => {
         setLoadingE(false);
         setMyEventData(res.data);

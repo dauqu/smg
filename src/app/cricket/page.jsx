@@ -19,7 +19,7 @@ export default function Page(params) {
   async function mySitesFunction() {
     setLoading(true);
     await axios
-      .get(`http://65.20.66.239:3000/api/first`, {})
+      .get(`https://onlinebookbazar.com/api/first`, {})
       .then((res) => {
         setLoading(false);
         console.log(res.data);
@@ -36,7 +36,7 @@ export default function Page(params) {
     setLoadingE(true);
     await axios
       .get(
-        `http://65.20.66.239:3000/api/series-by-sport/${selected.eventType}`,
+        `https://onlinebookbazar.com/api/series-by-sport/${selected.eventType}`,
         {}
       )
       .then((res) => {

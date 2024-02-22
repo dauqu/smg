@@ -31,7 +31,7 @@ export default function Page(params) {
     setLoading(true);
     await axios
       .get(
-        `http://65.20.66.239:3000/api/matches/${event_type_id}/${competition_id}`,
+        `https://onlinebookbazar.com/api/matches/${event_type_id}/${competition_id}`,
         {}
       )
       .then((res) => {
