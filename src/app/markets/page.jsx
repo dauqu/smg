@@ -236,9 +236,9 @@ export default function Page(params) {
                                       (back, index) => (
                                         <div
                                           key={index}
-                                          className="flex flex-col p-1 bg-slate-200 border-[1px] border-black"
+                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
                                         >
-                                          <div className="flex flex-col text-center">
+                                           <div className="flex flex-col text-center">
                                             <span className="font-bold">
                                               {back.size}
                                             </span>
