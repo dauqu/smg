@@ -203,29 +203,29 @@ export default function Page(params) {
                                 {runner?.status ?? ""}
                               </span>
                             </th>
-                            <td class="px-6 py-4 bg-green-200 text-center">
-                              <span className="font-bold">
+                            <td class="px-6 py-4 bg-green-200 text-center text-xs">
+                              <span className="font-bold text-lg">
                                 {runner?.back[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.back[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-red-200 text-center">
-                              <span className="font-bold">
+                            <td class="px-6 py-4 bg-red-200 text-center text-xs">
+                              <span className="font-bold text-lg">
                                 {runner?.ex?.availableToBack[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-pink-200 text-center">
-                              <span className="font-bold">
+                            <td class="px-6 py-4 bg-pink-200 text-center text-xs">
+                              <span className="font-bold text-lg">
                                 {runner?.ex?.availableToBack[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-blue-200 text-center">
-                              <span className="font-bold">
+                            <td class="px-6 py-4 bg-blue-200 text-center text-xs">
+                              <span className="font-bold text-lg">
                                 {runner?.ex?.availableToLay[0]?.price ?? ""}
                               </span>
                               <br></br>
