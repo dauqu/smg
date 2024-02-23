@@ -4,7 +4,7 @@ export default function Header(params) {
       <div className="flex-1">
         <img className="w-10 h-10" src="/logo.png" />
         <a className="btn btn-ghost no-animation text-xl" href="/">
-          SMG Group
+          Lion Exchange
         </a>
       </div>
       {/* Menu ICON */}
