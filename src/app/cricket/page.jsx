@@ -44,7 +44,7 @@ export default function Page(params) {
       .then((res) => {
         setLoadingE(false);
         setMyEventData(res.data);
-        setSelectedEvent(res?.data[0]);
+        // setSelectedEvent(res.data[0]);
       })
       .catch((err) => {
         setLoadingE(false);
@@ -53,21 +53,22 @@ export default function Page(params) {
 
   const [detailsData, setDetailsData] = React.useState([]);
   const [gettingDetails, setGettingDetails] = React.useState(true);
+
   async function getMatchesDetails(event_type_id, competition_id) {
     setGettingDetails(true);
-    await axios
-      .get(
-        `https://onlinebookbazar.com/api/matches/${event_type_id}/${competition_id}`,
-        {}
-      )
-      .then((res) => {
-        setGettingDetails(false);
-        setDetailsData(res.data);
-      })
-      .catch((err) => {
-        setGettingDetails(false);
-      });
+    try {
+      const res = await axios.get(
+        `https://onlinebookbazar.com/api/matches/${event_type_id}/${competition_id}`
+      );
+      setGettingDetails(false);
+      setDetailsData(res?.data ?? []);
+    } catch (err) {
+      console.error("Error fetching data:", err);
+      setGettingDetails(false);
+      setDetailsData([]);
+    }
   }
+  console.log(detailsData);
 
   React.useEffect(() => {
     mySitesFunction();
@@ -80,8 +81,6 @@ export default function Page(params) {
   React.useEffect(() => {
     getMatchesDetails(selectedEvent.eventType, selectedEvent);
   }, [selectedEvent]);
-
-  const currentDate = new Date();
 
   return (
     <div>
@@ -149,27 +148,31 @@ export default function Page(params) {
                         </div>
                       </div>
                     ) : (
-                      <select
-                        className="flex relative select select-bordered w-full"
-                        onChange={(e) => {
-                          setSelectedEvent(e.target.value);
-                          console.log(e.target.value);
-                        }}
-                      >
-                        {myEventData &&
-                          myEventData.map((item) => (
-                            <option
-                              value={item?.competition?.id}
-                              class={`btn btn-outline btn-wide no-animation btn-sm truncate ${
-                                selectedEvent == item?.competition?.id
-                                  ? "btn-active btn-outline"
-                                  : ""
-                              }`}
-                            >
-                              {item?.competition?.name ?? "Loading..."}
-                            </option>
-                          ))}
-                      </select>
+                      <div>
+                        <select
+                          className="flex relative select select-bordered w-full"
+                          value={selectedEvent}
+                          onChange={(e) => {
+                            setSelectedEvent(e.target.value);
+                            console.log(e.target.value);
+                          }}
+                        >
+                          {myEventData &&
+                            myEventData.map((item) => (
+                              <option
+                                key={item?.competition?.id}
+                                value={item?.competition?.id}
+                                className={`btn btn-outline btn-wide no-animation btn-sm truncate ${
+                                  selectedEvent == item?.competition?.id
+                                    ? "btn-active btn-outline"
+                                    : ""
+                                }`}
+                              >
+                                {item?.competition?.name ?? "Loading..."}
+                              </option>
+                            ))}
+                        </select>
+                      </div>
                     )}
                   </div>
                   <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -178,61 +181,66 @@ export default function Page(params) {
                     </caption>
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
-                        {/* <th scope="col" class="px-6 py-3">
-                          Market Count
-                        </th> */}
                         <th scope="col" class="px-6 py-3">
                           Event Name
                         </th>
-                        {/* <th scope="col" class="px-6 py-3">
-                          Country Code
-                        </th> */}
-                        {/* <th scope="col" class="px-6 py-3">
-                          Date
-                        </th> */}
                         <th scope="col" class="px-6 py-3">
                           <span class="sr-only">View</span>
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {detailsData &&
-                        detailsData.map((item) => {
-                          const eventOpenDate = new Date(item?.event?.openDate);
-                          const currentDate = new Date();
-                          const isEventOpen = eventOpenDate < currentDate;
+                    {detailsData?.length !== 0 ? (
+                      <tbody>
+                        {detailsData &&
+                          detailsData.map((item) => {
+                            const eventOpenDate = new Date(
+                              item?.event?.openDate
+                            );
+                            const currentDate = new Date();
+                            const isEventOpen = eventOpenDate < currentDate;
 
-                          return (
-                            <tr class="bg-white dark:bg-gray-800">
-                              <td class="px-6 py-4 uppercase">
-                                {item?.event?.name ?? "Loading..."}
-                                <br></br>
-                                <br></br>
-                                {isEventOpen ? (
-                                  <span className="text-green-600">open</span>
+                            return (
+                              <tr class="bg-white dark:bg-gray-800">
+                                {detailsData.length ? (
+                                  <div>
+                                    <td class="px-6 py-4 uppercase">
+                                      {item?.event?.name ?? "Loading..."}
+                                      <br></br>
+                                      <br></br>
+                                      {isEventOpen ? (
+                                        <span className="text-green-600">
+                                          open
+                                        </span>
+                                      ) : (
+                                        <span className="text-red-600">
+                                          not yet open
+                                        </span>
+                                      )}
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                      <a
+                                        href="#"
+                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                        onClick={() => {
+                                          router.push(
+                                            `/markets?eventid=${item?.event?.id}`
+                                          );
+                                        }}
+                                      >
+                                        View
+                                      </a>
+                                    </td>
+                                  </div>
                                 ) : (
-                                  <span className="text-red-600">
-                                    not yet open
-                                  </span>
+                                  <span>No Data Found</span>
                                 )}
-                              </td>
-                              <td class="px-6 py-4 text-right">
-                                <a
-                                  href="#"
-                                  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                                  onClick={() => {
-                                    router.push(
-                                      `/markets?eventid=${item?.event?.id}`
-                                    );
-                                  }}
-                                >
-                                  View
-                                </a>
-                              </td>
-                            </tr>
-                          );
-                        })}
-                    </tbody>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
+                    ) : (
+                      <span>No Data Found</span>
+                    )}
                   </table>
                 </div>
               </div>
