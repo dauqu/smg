@@ -2,7 +2,7 @@ export default function Header(params) {
   return (
     <div className="navbar shadow-sm bg-white border-b-2">
       <div className="flex-1">
-        <img className="w-16 h-10" src="/logo.png" />
+        <img className="w-10 h-10" src="/logo.png" />
         <a className="btn btn-ghost no-animation text-xl" href="/">
           SMG Group
         </a>

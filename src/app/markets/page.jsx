@@ -72,6 +72,26 @@ export default function Page(params) {
     myEventType();
   }, [selected.marketId]);
 
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `https://onlinebookbazar.com/api/market-odds/${selected.marketId}`
+        );
+        setMyEventData(res.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    const interval = setInterval(fetchData, 2000);
+
+    // Fetch data immediately when the component mounts
+    fetchData();
+
+    return () => clearInterval(interval);
+  }, [selected.marketId]); // Include selected.marketId in the dependency array
+
   return (
     <div>
       <div className="fixed top-0 left-0 right-0 z-10">
@@ -139,7 +159,9 @@ export default function Page(params) {
                           <div className="flex w-full items-center">
                             <span>Status: {event?.status ?? "NULL"}</span>
                             <div className="divider divider-horizontal">|</div>
-                            <span>Update Time: {event?.updateTime ?? "NULL"}</span>
+                            <span>
+                              Update Time: {event?.updateTime ?? "NULL"}
+                            </span>
                           </div>
                         </p>
                       </caption>
@@ -195,19 +217,19 @@ export default function Page(params) {
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-blue-200 text-center">
-                              <span className="font-bold">
-                                {runner?.ex?.availableToLay[0]?.price ?? ""}
-                              </span>
-                              <br></br>
-                              {runner?.ex?.availableToLay[0]?.size ?? ""}
-                            </td>
                             <td class="px-6 py-4 bg-pink-200 text-center">
                               <span className="font-bold">
                                 {runner?.ex?.availableToBack[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
+                            </td>
+                            <td class="px-6 py-4 bg-blue-200 text-center">
+                              <span className="font-bold">
+                                {runner?.ex?.availableToLay[0]?.price ?? ""}
+                              </span>
+                              <br></br>
+                              {runner?.ex?.availableToLay[0]?.size ?? ""}
                             </td>
                             <td class="px-6 py-4">
                               <div>{runner?.min ?? ""}</div>
@@ -220,115 +242,6 @@ export default function Page(params) {
                   ))}
               </div>
               {/* OLD data */}
-              <div className="space-x-2 h-[70vh] mt-10 w-full hidden">
-                <div className="overflow-x-auto w-full">
-                  {myEventData &&
-                    myEventData.map((event) => (
-                      <div key={event.eventid}>
-                        <div className="flex space-x-5">
-                          <h2>Event ID: {event?.eventid}</h2>
-                          <p>Market: {event?.market}</p>
-                          <p>Status: {event?.status}</p>
-                          <p>Total Matched: {event?.totalMatched}</p>
-                          <pre>{JSON.stringify(myEventData, null, 2)}</pre>
-                        </div>
-                        {/* Table */}
-                        <div className="overflow-auto mt-5 w-full">
-                          <table className="table w-full space-y-2">
-                            {/* head */}
-                            <thead>
-                              <tr className="text-center">
-                                <th></th>
-                                <th></th>
-                                <th></th>
-                                <th>Back</th>
-                                <th>Lay</th>
-                                <th>Min/Max</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              {/* row 1 */}
-                              {event?.runners?.map((runner) => (
-                                <tr>
-                                  <th>{runner?.runner}</th>
-                                  <td className="flex flex-col bg-green-100 text-center">
-                                    {/* {runner?.ex?.availableToBack.map(
-                                      (back, index) => (
-                                        <div
-                                          key={index}
-                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
-                                        >
-                                          <div className="flex flex-col text-center min-w-20 max-w-[24]">
-                                            <span className="font-bold">
-                                              {back.price}
-                                            </span>
-                                            {back.size}
-                                          </div>
-                                        </div>
-                                      )
-                                    )} */}
-                                  </td>
-                                  <td className="bg-red-100 text-center">
-                                    {/* {runner?.ex?.availableToLay.map(
-                                      (back, index) => (
-                                        <div className="flex flex-col text-center min-w-20">
-                                          <span className="font-bold">
-                                            {back.price}
-                                          </span>
-                                          {back.size}
-                                        </div>
-                                      )
-                                    )} */}
-                                  </td>
-                                  <td className="flex flex-col bg-pink-100 text-center">
-                                    {runner?.ex?.availableToBack[0]?.price}
-                                    {/* {runner[0]?.ex?.availableToBack?.size} */}
-                                    {/* {runner?.ex?.availableToBack.map(
-                                      (back, index) => (
-                                        <div
-                                          key={index}
-                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
-                                        >
-                                          <div className="flex flex-col text-center min-w-20">
-                                            <span className="font-bold">
-                                              {back.price}
-                                            </span>
-                                            {back.size}
-                                          </div>
-                                        </div>
-                                      )
-                                    )} */}
-                                  </td>
-                                  <td className="bg-blue-100 text-center">
-                                    {/* {runner?.ex?.availableToBack.map(
-                                      (back, index) => (
-                                        <div
-                                          key={index}
-                                          className="flex flex-col bg-slate-200 border-[1px] border-black"
-                                        >
-                                          <div className="flex flex-col text-center min-w-20">
-                                            <span className="font-bold">
-                                              {back.price}
-                                            </span>
-                                            {back.size}
-                                          </div>
-                                        </div>
-                                      )
-                                    )} */}
-                                  </td>
-                                  <td>
-                                    <div>{runner?.min ?? ""}</div>
-                                    <div>{runner?.max ?? ""}</div>
-                                  </td>
-                                </tr>
-                              ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    ))}
-                </div>
-              </div>
             </div>
           )}
         </div>
