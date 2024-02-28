@@ -1,0 +1,29 @@
+//  http://142.93.36.1/api/v1/fetch_data?Action=listEventTypes
+
+[
+  {
+    "eventType": "1",
+    "name": "Soccer",
+    "marketCount": 2492
+  },
+  {
+    "eventType": "2",
+    "name": "Tennis",
+    "marketCount": 5578
+  },
+  {
+    "eventType": "4",
+    "name": "Cricket",
+    "marketCount": 22
+  },
+  {
+    "eventType": "7",
+    "name": "Horse Racing",
+    "marketCount": 831
+  },
+  {
+    "eventType": "4339",
+    "name": "Greyhound Racing",
+    "marketCount": 298
+  }
+]

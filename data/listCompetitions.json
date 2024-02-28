@@ -1,0 +1,212 @@
+// http://142.93.36.1/api/v1/fetch_data?Action=listCompetitions&EventTypeID=4
+
+[
+  {
+    "competition": {
+      "id": "10693181",
+      "name": "Pakistan Super League"
+    },
+    "marketCount": 43,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "11678489",
+      "name": "ICC World Twenty20"
+    },
+    "marketCount": 1,
+    "competitionRegion": "AUS"
+  },
+  {
+    "competition": {
+      "id": "11365612",
+      "name": "Test Matches"
+    },
+    "marketCount": 4,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "9962116",
+      "name": "One Day Internationals"
+    },
+    "marketCount": 28,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "9992899",
+      "name": "International Twenty20 Matches"
+    },
+    "marketCount": 17,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "12072774",
+      "name": "Womens International Twenty20 Matches"
+    },
+    "marketCount": 20,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "9886504",
+      "name": "Womens One Day Internationals"
+    },
+    "marketCount": 26,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "10328858",
+      "name": "Twenty20 Big Bash"
+    },
+    "marketCount": 1,
+    "competitionRegion": "AUS"
+  },
+  {
+    "competition": {
+      "id": "10586027",
+      "name": "Ford Trophy"
+    },
+    "marketCount": 9,
+    "competitionRegion": "NZL"
+  },
+  {
+    "competition": {
+      "id": "10479856",
+      "name": "Super Smash T20"
+    },
+    "marketCount": 12,
+    "competitionRegion": "NZL"
+  },
+  {
+    "competition": {
+      "id": "12162210",
+      "name": "Womens Super Smash T20"
+    },
+    "marketCount": 4,
+    "competitionRegion": "NZL"
+  },
+  {
+    "competition": {
+      "id": "11586749",
+      "name": "Test Series Markets"
+    },
+    "marketCount": 9,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12264582",
+      "name": "Marsh One-Day Cup"
+    },
+    "marketCount": 28,
+    "competitionRegion": "AUS"
+  },
+  {
+    "competition": {
+      "id": "123456789",
+      "name": "New Demo Series"
+    },
+    "marketCount": 1,
+    "competitionRegion": "IN"
+  },
+  {
+    "competition": {
+      "id": "12195619",
+      "name": "Australia NCL Women"
+    },
+    "marketCount": 6,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12161756",
+      "name": "Bangladesh Premier League"
+    },
+    "marketCount": 3,
+    "competitionRegion": "International"
+  },
+  {
+    "competition": {
+      "id": "11690862",
+      "name": "ICC U19 World Cup"
+    },
+    "marketCount": 37,
+    "competitionRegion": "NZL"
+  },
+  {
+    "competition": {
+      "id": "12039039",
+      "name": "Asia Cup"
+    },
+    "marketCount": 5,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12546072",
+      "name": "SA20"
+    },
+    "marketCount": 30,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12547929",
+      "name": "International League T20"
+    },
+    "marketCount": 30,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12559935",
+      "name": "Women's Premier League"
+    },
+    "marketCount": 2,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12637366",
+      "name": "Womens International Twenty20 Matches."
+    },
+    "marketCount": 14,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12645226",
+      "name": "Sri Lanka v Zimbabwe T20 Series"
+    },
+    "marketCount": 14,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12561626",
+      "name": "ACC Twenty20 Cup"
+    },
+    "marketCount": 20,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12651524",
+      "name": "International Twenty20 Series"
+    },
+    "marketCount": 5,
+    "competitionRegion": "GBR"
+  },
+  {
+    "competition": {
+      "id": "12638098",
+      "name": "International Twenty20 Matches."
+    },
+    "marketCount": 14,
+    "competitionRegion": "GBR"
+  }
+]

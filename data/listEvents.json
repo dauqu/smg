@@ -1,0 +1,46 @@
+// http://142.93.36.1/api/v1/fetch_data?Action=listEvents&EventTypeID=4&CompetitionID=10693181
+
+[
+  {
+    "event": {
+      "id": "33055853",
+      "name": "Karachi Kings v Islamabad United",
+      "countryCode": "GB",
+      "timezone": "GMT",
+      "openDate": "2024-02-28T14:00:00.000Z"
+    },
+    "marketCount": 27,
+    "scoreboard_id": "",
+    "selections": null,
+    "liability_type": "0",
+    "undeclared_markets": 1
+  },
+  {
+    "event": {
+      "id": "33058522",
+      "name": "Karachi Kings v Quetta Gladiators",
+      "countryCode": "GB",
+      "timezone": "GMT",
+      "openDate": "2024-02-29T14:00:00.000Z"
+    },
+    "marketCount": 27,
+    "scoreboard_id": "",
+    "selections": null,
+    "liability_type": "0",
+    "undeclared_markets": 1
+  },
+  {
+    "event": {
+      "id": "28102621",
+      "name": "Pakistan Super League",
+      "countryCode": "PK",
+      "timezone": "GMT",
+      "openDate": "2024-03-18T14:30:00.000Z"
+    },
+    "marketCount": 1,
+    "scoreboard_id": "",
+    "selections": null,
+    "liability_type": "0",
+    "undeclared_markets": 1
+  }
+]

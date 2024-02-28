@@ -1,0 +1,173 @@
+// http://142.93.36.1/api/v1/listMarketBookOdds?market_id=1.225336454
+
+[
+  {
+    "eventid": "33055853",
+    "marketId": "1.225336454",
+    "market": "Match Odds",
+    "updateTime": "2024-02-28T18:28:59",
+    "status": "OPEN",
+    "inplay": false,
+    "totalMatched": 18345.14,
+    "active": true,
+    "markettype": "ODDS",
+    "runners": [
+      {
+        "selectionId": 10782635,
+        "runner": "Karachi Kings",
+        "status": "ACTIVE",
+        "lastPriceTraded": 1.96,
+        "removalDate": null,
+        "ex": {
+          "availableToBack": [
+            {
+              "level": 0,
+              "price": 1.94,
+              "size": 4146
+            },
+            {
+              "level": 1,
+              "price": 1.93,
+              "size": 236
+            },
+            {
+              "level": 2,
+              "price": 1.92,
+              "size": 113
+            }
+          ],
+          "availableToLay": [
+            {
+              "level": 0,
+              "price": 1.96,
+              "size": 726
+            },
+            {
+              "level": 1,
+              "price": 1.97,
+              "size": 763
+            },
+            {
+              "level": 2,
+              "price": 1.98,
+              "size": 96
+            }
+          ]
+        },
+        "back": [
+          {
+            "level": 0,
+            "price": 1.94,
+            "size": 4146
+          },
+          {
+            "level": 1,
+            "price": 1.93,
+            "size": 236
+          },
+          {
+            "level": 2,
+            "price": 1.92,
+            "size": 113
+          }
+        ],
+        "lay": [
+          {
+            "level": 0,
+            "price": 1.96,
+            "size": 726
+          },
+          {
+            "level": 1,
+            "price": 1.97,
+            "size": 763
+          },
+          {
+            "level": 2,
+            "price": 1.98,
+            "size": 96
+          }
+        ]
+      },
+      {
+        "selectionId": 10782589,
+        "runner": "Islamabad United",
+        "status": "ACTIVE",
+        "lastPriceTraded": 2.04,
+        "removalDate": null,
+        "ex": {
+          "availableToBack": [
+            {
+              "level": 0,
+              "price": 2.04,
+              "size": 1434
+            },
+            {
+              "level": 1,
+              "price": 2.02,
+              "size": 112
+            },
+            {
+              "level": 2,
+              "price": 2,
+              "size": 301
+            }
+          ],
+          "availableToLay": [
+            {
+              "level": 0,
+              "price": 2.08,
+              "size": 4172
+            },
+            {
+              "level": 1,
+              "price": 2.1,
+              "size": 318
+            },
+            {
+              "level": 2,
+              "price": 2.14,
+              "size": 19
+            }
+          ]
+        },
+        "back": [
+          {
+            "level": 0,
+            "price": 2.04,
+            "size": 1434
+          },
+          {
+            "level": 1,
+            "price": 2.02,
+            "size": 112
+          },
+          {
+            "level": 2,
+            "price": 2,
+            "size": 301
+          }
+        ],
+        "lay": [
+          {
+            "level": 0,
+            "price": 2.08,
+            "size": 4172
+          },
+          {
+            "level": 1,
+            "price": 2.1,
+            "size": 318
+          },
+          {
+            "level": 2,
+            "price": 2.14,
+            "size": 19
+          }
+        ]
+      }
+    ],
+    "min": "",
+    "max": ""
+  }
+]

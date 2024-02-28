@@ -1,0 +1,24 @@
+// http://142.93.36.1/api/v1/fetch_data?Action=listMarketRunner&MarketID=1.225336454
+
+[
+  {
+    "marketId": "1.225336454",
+    "marketName": "Match Odds",
+    "marketStartTime": "2024-02-28T14:00:00.000Z",
+    "totalMatched": 0,
+    "runners": [
+      {
+        "selectionId": 10782635,
+        "runnerName": "Karachi Kings",
+        "handicap": 0,
+        "sortPriority": 1
+      },
+      {
+        "selectionId": 10782589,
+        "runnerName": "Islamabad United",
+        "handicap": 0,
+        "sortPriority": 2
+      }
+    ]
+  }
+]
