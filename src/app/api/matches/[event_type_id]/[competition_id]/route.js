@@ -5,6 +5,12 @@ import axios from "axios";
 export async function GET(request, { params }) {
   const event_type_id = params.event_type_id;
   const competition_id = params.competition_id;
+
+  if (event_type_id === null || event_type_id === undefined || event_type_id === ""){
+    return NextResponse.json("Event ID is require", {
+      status: response.status,
+    });
+  }
   try {
     // Make a GET request to https://api.daucu.site
     const response = await axios.get(
