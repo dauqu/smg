@@ -44,6 +44,14 @@ export async function GET(request) {
           { status: 500 }
         );
       });
+
+    // Close the connection to the database
+    await mongoose.connection.close();
+
+    // Return the response data to the client
+    return NextResponse.json(response.data, {
+      status: response.status,
+    });
   } catch (error) {
     // Handle any errors
     console.error("Error making GET request:", error.message);
