@@ -56,10 +56,30 @@ body {
 
 /* horizontal scrollbar */
 ::-webkit-scrollbar-horizontal {
-  height: 2px;
+  height: 0px;
 }
 
 /* vertical scrollbar */
 ::-webkit-scrollbar-vertical {
-  width: 2px;
+  width: 0px;
 }
+/* width */
+::-webkit-scrollbar {
+  height: 0px; /* Change to height for horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

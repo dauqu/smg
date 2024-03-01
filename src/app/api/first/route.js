@@ -1,5 +1,6 @@
 import axios from "axios";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 // To handle a GET request to /api
 export async function GET(request) {
@@ -9,6 +10,8 @@ export async function GET(request) {
       "http://142.93.36.1/api/v1/fetch_data?Action=listEventTypes"
     );
 
+    //Save response in mongoDB 
+    
     // Return the response data to the client
     return NextResponse.json(response.data, {
       status: response.status,

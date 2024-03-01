@@ -1,10 +1,10 @@
-import Image from "next/image";
-import HomeScreen from "./components/home";
+
+import Homes from "./components/homes";
 
 export default function Home() {
   return (
     <main className="h-screen">
-      <HomeScreen/>
+      <Homes/>
     </main>
   );
 }
