@@ -13,7 +13,7 @@ export default function Sidebar(params) {
   async function getType() {
     // Fetch axios data
     await axios
-      .get("http://localhost:4000/type/all")
+      .get("http://65.20.66.239:4000/type/all")
       .then((res) => {
         setType(res?.data?.types);
         console.log(res.data);
@@ -29,7 +29,7 @@ export default function Sidebar(params) {
   async function getCompetition() {
     // Fetch axios data
     await axios
-      .get("http://localhost:4000/competition/id/4")
+      .get("http://65.20.66.239:4000/competition/id/4")
       .then((res) => {
         setCompetition(res?.data?.competitions);
         console.log(res.data);
@@ -257,7 +257,11 @@ export default function Sidebar(params) {
   return (
     <div className="inset-0 bottom-0 h-screen pt-[7vh] bg-[#0C0E2C] flex w-auto relative">
       {/* Sidebar 1 */}
-      <div class="simplebar-mask mt-2 border-r-[1px] border-slate-500 relative">
+      <div class="simplebar-mask mt-2 border-r-[1px] border-slate-500 relative" style={{
+          // transtion animation 
+          transition: "transform 0.1s ease 0s",
+          transform: "translate3d(0px, 0px, 0px)",
+      }}>
         {type &&
           type.map((item) => (
             <a
@@ -293,7 +297,7 @@ export default function Sidebar(params) {
             <ul className="list pt-5">
               {competition &&
                 competition.map((item, index) => (
-                  <Link
+                  <a
                     key={item._id}
                     className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center ${
                       competition_id === item.id ? "bg-slate-700" : ""
@@ -311,7 +315,7 @@ export default function Sidebar(params) {
                     >
                       {item.name ?? ""}
                     </span>
-                  </Link>
+                  </a>
                 ))}
             </ul>
           </div>
