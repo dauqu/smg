@@ -83,3 +83,9 @@ body {
   background: #555;
 }
 
+
+div {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}

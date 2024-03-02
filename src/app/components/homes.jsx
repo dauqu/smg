@@ -4,11 +4,17 @@ import Header from "./header";
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import BottomNavigation from "./bottom-navigation";
 
 export default function Homes(params) {
   const cards = [{}, {}, {}, {}, {}];
 
   const [markets, setMarkets] = useState([]);
+  const [selectedTab, setSelectedTab] = useState("single");
+  const [seletedBet, setSeletedBet] = useState({
+    lay: [],
+    back: [],
+  });
 
   async function getMarkets() {
     // Fetch axios data
@@ -27,6 +33,7 @@ export default function Homes(params) {
 
   const searchParams = useSearchParams();
   const competition_id = searchParams.get("id");
+  const competition_name = searchParams.get("name");
 
   const [data, setData] = useState([]); // Initialize as null or appropriate initial value
   const [loading, setLoading] = useState(true);
@@ -105,20 +112,20 @@ export default function Homes(params) {
       <div className="flex relative">
         <Sidebar />
         {/* Home */}
-        <div className="w-full bg-slate-100 h-[98vh] rounded-lg p-5 overflow-auto pt-[8vh]">
+        <div className="w-full bg-slate-200 h-[99vh] rounded-lg p-5 overflow-auto pt-[8vh] mt-10 sm:mt-2">
           <img
             src="https://www.onlinebookbazar.com/assets/images/frontend/banner/64a55730164b11688557360.jpg"
             className="h-[25vh] rounded-xl"
           />
           {/*  */}
-          <div class="col-12 mt-5">
+          <div class="col-12 mt-5 bg-white rounded-md py-1">
             <div class="league-title flex items-center space-x-2">
               <div className="avatar placeholder">
                 <div className="bg-slate-800 text-neutral-content rounded-xl w-8">
                   <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" />
                 </div>
               </div>
-              <span class="league-title__name">Pakistan Super League</span>
+              <span class="text-md font-bold">{competition_name}</span>
             </div>
           </div>
           {/* Grid */}
@@ -129,7 +136,7 @@ export default function Homes(params) {
               </div>
             ))} */}
           {loading == true ? (
-            <div className="w-full space-y-2 pt-10">
+            <div className="w-full space-y-2 pt-10 shadow-sm bg-white rounded-lg mt-5 p-5">
               <div className="skeleton w-full h-8 rounded-none"></div>
               <div className="skeleton w-full h-8 rounded-none"></div>
               <div className="skeleton w-full h-8 rounded-none"></div>
@@ -139,18 +146,18 @@ export default function Homes(params) {
           ) : (
             <div>
               {data.length > 0 ? (
-                <div class="grid grid-cols-4 gap-4 mt-5">
+                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4 mt-5">
                   {data?.map((item, index) => (
-                    <div className="p-4 bg-white shadow-sm rounded-xl">
+                    <div className="p-4 bg-white shadow-sm rounded-xl min-w-[100px]">
                       {/* Top bar */}
-                      <div className="flex justify-between px-2">
+                      <div className="flex justify-around px-2">
                         {/* {item.market_type.} */}
                         {/* Left */}
                         <div className="flex flex-col justify-center items-center space-y-1">
                           {/* Avator */}
                           <div className="avatar placeholder">
-                            <div className="bg-neutral text-neutral-content rounded-xl w-10">
-                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" />
+                            <div className="text-neutral-content rounded-xl w-12 border-2 border-slate-200 bg-white">
+                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" className="p-1" />
                             </div>
                           </div>
                           {/* Short Name */}
@@ -181,8 +188,8 @@ export default function Homes(params) {
                         <div className="flex flex-col justify-center items-center space-y-1">
                           {/* Avator */}
                           <div className="avatar placeholder">
-                            <div className="bg-neutral text-neutral-content rounded-xl w-10">
-                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" />
+                            <div className="text-neutral-content rounded-xl w-12 border-2 border-slate-200 bg-white">
+                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" className="p-1" />
                             </div>
                           </div>
                           {/* Short Name */}
@@ -195,8 +202,14 @@ export default function Homes(params) {
                       </div>
                       {/* Center Div */}
                       <div className="flex w-full justify-between mt-3">
-                        <span className="text-sm">Lahore Qalandars</span>
-                        <span className="text-xs text-blue-500">Markets</span>
+                        <select className="text-sm cursor-pointer">
+                          <option className="text-md font-bold outline-none border-none">
+                            Lahore Qalandars
+                          </option>
+                        </select>
+                        <span className="text-xs text-blue-500 cursor-pointer">
+                          Markets
+                        </span>
                       </div>
                       {/* Bottom Div */}
                       <div className="flex w-full justify-between mt-3 flex-col space-y-1">
@@ -205,7 +218,29 @@ export default function Homes(params) {
                           {item?.market_odds[0]?.runners[0]?.back?.map(
                             (item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
-                                <button className="btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 bg-[#F8F9FA] hover:bg-[#F8F9FA]">
+                                <button
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
+                                    seletedBet.back.includes(item.price)
+                                      ? "bg-[#5671F5] text-white"
+                                      : "bg-[#F8F9FA] hover:bg-[#F8F9FA]"
+                                  }`}
+                                  onClick={() => {
+                                    //Set all selected items in lay and if already selected then remove it
+                                    if (seletedBet.back.includes(item.price)) {
+                                      setSeletedBet({
+                                        ...seletedBet,
+                                        lay: seletedBet.back.filter(
+                                          (x) => x !== item.price
+                                        ),
+                                      });
+                                    } else {
+                                      setSeletedBet({
+                                        ...seletedBet,
+                                        lay: [...seletedBet.back, item.price],
+                                      });
+                                    }
+                                  }}
+                                >
                                   {item.price ?? 0}
                                 </button>
                                 <span className="text-xs">
@@ -220,7 +255,29 @@ export default function Homes(params) {
                           {item?.market_odds[0]?.runners[0]?.back?.map(
                             (item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
-                                <button className="btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 bg-[#F8F9FA] hover:bg-[#F8F9FA]">
+                                <button
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 bg-[#F8F9FA] hover:bg-[#F8F9FA] ${
+                                    seletedBet.lay.includes(item.price)
+                                      ? "bg-[#5671F5] text-white"
+                                      : ""
+                                  }`}
+                                  onClick={() => {
+                                    //Set all selected items in lay and if already selected then remove it
+                                    if (seletedBet.lay.includes(item.price)) {
+                                      setSeletedBet({
+                                        ...seletedBet,
+                                        lay: seletedBet.lay.filter(
+                                          (x) => x !== item.price
+                                        ),
+                                      });
+                                    } else {
+                                      setSeletedBet({
+                                        ...seletedBet,
+                                        lay: [...seletedBet.lay, item.price],
+                                      });
+                                    }
+                                  }}
+                                >
                                   {item.price ?? 0}
                                 </button>
                                 <span className="text-xs">
@@ -235,7 +292,7 @@ export default function Homes(params) {
                   ))}
                 </div>
               ) : (
-                <div className="flex justify-center items-center h-[50vh] flex-col space-y-5">
+                <div className="flex justify-center items-center h-[50vh] flex-col space-y-5 bg-white mt-5 rounded-lg">
                   <span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -260,9 +317,71 @@ export default function Homes(params) {
               )}
             </div>
           )}
+
+          {/* Footer */}
+          <div className="flex p-5 bg-white rounded-lg mt-10 w-full justify-between shadow-sm">
+            <div className="flex flex-col">
+              <span className="text-base font-bold">ABOUT US</span>
+              <div className="flex space-x-2 mt-5">
+                <span className="text-xs">
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral text-neutral-content rounded-full w-8">
+                      <span>FB</span>
+                    </div>
+                  </div>
+                </span>
+                <span className="text-xs">
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral text-neutral-content rounded-full w-8">
+                      <span>ID</span>
+                    </div>
+                  </div>{" "}
+                </span>
+                <span className="text-xs">
+                  <div className="avatar placeholder">
+                    <div className="bg-neutral text-neutral-content rounded-full w-8">
+                      <span>YT</span>
+                    </div>
+                  </div>{" "}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-base font-bold">Usefull Link</span>
+              <div className="flex flex-col">
+                <span className="text-xs hover:underline hover:text-blue-500 cursor-pointer">
+                  Home
+                </span>
+                <span className="text-xs hover:underline hover:text-blue-500 cursor-pointer">
+                  News & Update
+                </span>
+                <span className="text-xs hover:underline hover:text-blue-500 cursor-pointer">
+                  Contact
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col">
+              <span className="text-base font-bold">Company Policy</span>
+              <div className="flex flex-col">
+                <span className="text-xs hover:underline hover:text-blue-500 cursor-pointer">
+                  Privacy Policy
+                </span>
+                <span className="text-xs hover:underline hover:text-blue-500 cursor-pointer">
+                  Terms And Condition
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="flex p-5 bg-white rounded-lg mt-5 w-full justify-between shadow-sm">
+            <span className="text-sm">
+              Copyright © 2024 Lion exchange All right reserved
+            </span>
+          </div>
         </div>
         {/* Right Sidebar */}
-        <div className="w-[500px] flex flex-col p-2 pt-[8vh]">
+        <div className="w-[500px] flex-col p-2 pt-[8vh] ml-2 justify-between hidden sm:hidden md:hidden lg:flex">
           {/* Bet Slip */}
           <div className="flex p-2 bg-slate-800 text-white rounded-md items-center space-x-2">
             <svg
@@ -279,15 +398,103 @@ export default function Homes(params) {
           </div>
           {/* Button Groupe */}
           <div className="items-center justify-around mt-5 grid grid-cols-2 space-x-2">
-            <div className="w-auto p-1 border-2 border-slate-300 flex items-center justify-center rounded-md cursor-pointer">
+            <div
+              className={`w-auto p-1 border-2 border-slate-300 flex items-center justify-center rounded-md cursor-pointer ${
+                selectedTab === "single"
+                  ? "bg-[#5671F5] text-white"
+                  : "bg-white text-slate-800"
+              }`}
+              onClick={() => {
+                setSelectedTab("single");
+              }}
+            >
               Single Bet
             </div>
-            <div className="w-auto p-1 border-2 border-slate-300 bg-[#5671F5] flex items-center justify-center rounded-md text-white cursor-pointer">
+            <div
+              className={`w-auto p-1 border-2 flex items-center justify-center rounded-md cursor-pointer ${
+                selectedTab === "multi"
+                  ? "bg-[#5671F5] text-white"
+                  : "bg-white text-slate-800"
+              }`}
+              onClick={() => {
+                setSelectedTab("multi");
+              }}
+            >
               Multi Bet
+            </div>
+          </div>
+          {/* Selection Desplay */}
+          <div className="w-full h-full bg-slate-200 mt-5 rounded-xl justify-start flex flex-col items-center p-2">
+            <div className="w-full flex flex-col text-center items-start p-2 bg-white rounded-md">
+              {/* <span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="80"
+                  height="80"
+                  fill=""
+                  class="bi bi-card-checklist fill-slate-400"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                  <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0" />
+                </svg>
+              </span>
+              <span className="text-center text-slate-400 font-bold">
+                Your selections will be displayed here
+              </span> */}
+
+              {/* Table */}
+              <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5">
+                {/* Delete ICON */}
+                <div className="">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    class="bi bi-trash fill-red-600 cursor-pointer"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                  </svg>
+                </div>
+                {/* Left */}
+                <div className="flex flex-col justify-start items-start">
+                  <span className="font-bold">ATM vs ATB</span>
+                  <span className="text-sm">Exact Number of Goal</span>
+                  <span className="text-sm">1.8</span>
+                </div>
+                {/* Right */}
+              </div>
+            </div>
+          </div>
+          {/* Bottom */}
+          <div className="w-full h-auto bg-slate-200 mt-5 rounded-xl justify-center flex flex-col items-center p-2">
+            <div className="flex justify-between w-full items-center">
+              <span className="text-sm">Singles (x0)</span>
+              <div>
+                <span className="flex flex-col max-w-40 rounded-md bg-white px-2 py-1 outline-1 outline-slate-800 outline-dashed">
+                  <input
+                    className="rounded-md text-sm w-full outline-none"
+                    type="text"
+                    placeholder="0.0"
+                  />
+                  <label className="text-slate-800 text-xs uppercase mt-2">
+                    Stake
+                  </label>
+                </span>
+              </div>
+            </div>
+            <div className="divider h-1"></div>
+            <div className="w-full justify-start">
+              <button className="btn btn-md btn-neutral rounded-md w-full no-animation">
+                Place a Bid
+              </button>
             </div>
           </div>
         </div>
       </div>
+      <BottomNavigation />
     </div>
   );
 }
