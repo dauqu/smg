@@ -6,14 +6,14 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BottomNavigation from "./bottom-navigation";
 import { toast } from "react-toastify";
+import { selectedBet } from "../store";
+import { useAtom } from "jotai";
 
 export default function Homes(params) {
   const [markets, setMarkets] = useState([]);
   const [selectedTab, setSelectedTab] = useState("single");
-  const [seletedBet, setSeletedBet] = useState({
-    lay: [],
-    back: [],
-  });
+
+  const [seletedBet, setSeletedBet] = useAtom(selectedBet);
 
   // Place Bet
   const [placingBet, setPlacingBet] = useState(false);
@@ -152,14 +152,14 @@ export default function Homes(params) {
             className="h-[10vh] md:h-[25vh] rounded-xl"
           />
           {/*  */}
-          <div class="col-12 mt-5 bg-white rounded-md py-1">
-            <div class="league-title flex items-center space-x-2">
+          <div className="col-12 mt-5 bg-white rounded-md py-1">
+            <div className="league-title flex items-center space-x-2">
               <div className="avatar placeholder">
                 <div className="bg-slate-800 text-neutral-content rounded-xl w-8">
                   <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" />
                 </div>
               </div>
-              <span class="text-md font-bold">{competition_name}</span>
+              <span className="text-md font-bold">{competition_name}</span>
             </div>
           </div>
           {/* Grid */}
@@ -180,7 +180,7 @@ export default function Homes(params) {
           ) : (
             <div>
               {data.length > 0 ? (
-                <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4 mt-5">
+                <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4 mt-5">
                   {data?.map((item, index) => (
                     <div
                       className="p-4 bg-white shadow-sm rounded-xl min-w-[100px]"
@@ -220,7 +220,7 @@ export default function Homes(params) {
                               xmlns="http://www.w3.org/2000/svg"
                               width="16"
                               height="16"
-                              class="bi bi-play-circle fill-red-600"
+                              className="bi bi-play-circle fill-red-600"
                               viewBox="0 0 16 16"
                             >
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -272,26 +272,20 @@ export default function Homes(params) {
                             (item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
-                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
-                                    seletedBet.back.includes(item.price)
-                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
-                                      : "bg-[#F8F9FA] hover:bg-[#F8F9FA]"
-                                  }`}
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 $`}
                                   onClick={() => {
-                                    //Set all selected items in lay and if already selected then remove it
-                                    if (seletedBet.back.includes(item.price)) {
-                                      setSeletedBet({
-                                        ...seletedBet,
-                                        back: seletedBet.back.filter(
-                                          (x) => x !== item.price
-                                        ),
-                                      });
-                                    } else {
-                                      setSeletedBet({
-                                        ...seletedBet,
-                                        back: [...seletedBet.back, item.price],
-                                      });
-                                    }
+                                    console.log(seletedBet);
+                                    //Append data in array
+                                    setSeletedBet([
+                                      ...seletedBet,
+                                      {
+                                        event_name: item?.event_name,
+                                        market_name: item?.market_name,
+                                        runner_name: item?.runner_name,
+                                        back: item?.back,
+                                        lay: item?.lay,
+                                      },
+                                    ]);
                                   }}
                                 >
                                   {item.price ?? 0}
@@ -309,27 +303,8 @@ export default function Homes(params) {
                             (item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
-                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
-                                    seletedBet.lay.includes(item.price)
-                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
-                                      : "bg-[#F8F9FA] hover:bg-[#F8F9FA]"
-                                  }`}
-                                  onClick={() => {
-                                    //Set all selected items in lay and if already selected then remove it
-                                    if (seletedBet.lay.includes(item.price)) {
-                                      setSeletedBet({
-                                        ...seletedBet,
-                                        lay: seletedBet.lay.filter(
-                                          (x) => x !== item.price
-                                        ),
-                                      });
-                                    } else {
-                                      setSeletedBet({
-                                        ...seletedBet,
-                                        lay: [...seletedBet.lay, item.price],
-                                      });
-                                    }
-                                  }}
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 `}
+                                  onClick={() => {}}
                                 >
                                   {item.price ?? 0}
                                 </button>
@@ -352,7 +327,7 @@ export default function Homes(params) {
                       width="100"
                       height="100"
                       fill=""
-                      class="bi bi-clipboard-x fill-slate-500"
+                      className="bi bi-clipboard-x fill-slate-500"
                       viewBox="0 0 16 16"
                     >
                       <path
@@ -442,7 +417,7 @@ export default function Homes(params) {
               width="16"
               height="16"
               fill="currentColor"
-              class="bi bi-file-earmark-fill"
+              className="bi bi-file-earmark-fill"
               viewBox="0 0 16 16"
             >
               <path d="M4 0h5.293A1 1 0 0 1 10 .293L13.707 4a1 1 0 0 1 .293.707V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m5.5 1.5v2a1 1 0 0 0 1 1h2z" />
@@ -485,7 +460,7 @@ export default function Homes(params) {
                   width="80"
                   height="80"
                   fill=""
-                  class="bi bi-card-checklist fill-slate-400"
+                  className="bi bi-card-checklist fill-slate-400"
                   viewBox="0 0 16 16"
                 >
                   <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
@@ -497,27 +472,42 @@ export default function Homes(params) {
               </span> */}
 
               {/* Table */}
-              <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5">
-                {/* Delete ICON */}
-                <div className="">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    class="bi bi-trash fill-red-600 cursor-pointer"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
-                  </svg>
-                </div>
-                {/* Left */}
-                <div className="flex flex-col justify-start items-start">
-                  <span className="font-bold">ATM vs ATB</span>
-                  <span className="text-sm">Exact Number of Goal</span>
-                  <span className="text-sm">1.8</span>
-                </div>
-                {/* Right */}
+
+              {/* Delete ICON */}
+              <div className="space-y-2 w-full overflow-auto max-h-[55vh]">
+                {seletedBet?.map((item, index) => (
+                  <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5">
+                    <div
+                      className=""
+                      onClick={() => {
+                        //Remove data from array
+                        const filteredItems = seletedBet.filter(
+                          (item) => item !== seletedBet[index]
+                        );
+                        setSeletedBet(filteredItems);
+                      }}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        className="bi bi-trash fill-red-600 cursor-pointer"
+                        viewBox="0 0 16 16"
+                      >
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                      </svg>
+                    </div>
+                    {/* Left */}
+                    <div className="flex flex-col justify-start items-start">
+                      <span className="font-bold">ATM vs ATB</span>
+                      <span className="text-sm">Exact Number of Goal</span>
+                      <span className="text-sm">1.8</span>
+                    </div>
+
+                    {/* Right */}
+                  </div>
+                ))}
               </div>
             </div>
           </div>

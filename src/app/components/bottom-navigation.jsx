@@ -49,7 +49,7 @@ export default function BottomNavigation() {
             width="30"
             height="30"
             fill="#000000"
-            class="bi bi-list"
+            className="bi bi-list"
             viewBox="0 0 16 16"
           >
             <path

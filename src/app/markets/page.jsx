@@ -149,13 +149,13 @@ export default function Page(params) {
             </div>
           ) : (
             <div className="flex space-x-2 h-[60vh] mt-2 w-full overflow-scroll">
-              <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+              <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
                 {myEventData &&
                   myEventData.map((event) => (
-                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                      <caption class="p-2 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                      <caption className="p-2 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                         Match Odds
-                        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                        <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
                           <div className="flex w-full items-center">
                             <span>Status: {event?.status ?? "NULL"}</span>
                             <div className="divider divider-horizontal">|</div>
@@ -165,30 +165,30 @@ export default function Page(params) {
                           </div>
                         </p>
                       </caption>
-                      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                          <th scope="col" class="px-6 py-3">
+                          <th scope="col" className="px-6 py-3">
                             Product name
                           </th>
-                          <th scope="col" class="px-6 py-3"></th>
-                          <th scope="col" class="px-6 py-3"></th>
-                          <th scope="col" class="px-6 py-3">
+                          <th scope="col" className="px-6 py-3"></th>
+                          <th scope="col" className="px-6 py-3"></th>
+                          <th scope="col" className="px-6 py-3">
                             Back
                           </th>
-                          <th scope="col" class="px-6 py-3">
+                          <th scope="col" className="px-6 py-3">
                             Lay
                           </th>
-                          <th scope="col" class="px-6 py-3">
+                          <th scope="col" className="px-6 py-3">
                             Min/Max
                           </th>
                         </tr>
                       </thead>
                       {event?.runners?.map((runner) => (
                         <tbody>
-                          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                          <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th
                               scope="row"
-                              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center"
                             >
                               {runner?.runner}
                               {/* <pre>{JSON.stringify(runner, null, 2)}</pre> */}
@@ -203,35 +203,35 @@ export default function Page(params) {
                                 {runner?.status ?? ""}
                               </span>
                             </th>
-                            <td class="px-6 py-4 bg-green-200 text-center text-xs">
+                            <td className="px-6 py-4 bg-green-200 text-center text-xs">
                               <span className="font-bold text-lg">
                                 {runner?.back[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.back[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-red-200 text-center text-xs">
+                            <td className="px-6 py-4 bg-red-200 text-center text-xs">
                               <span className="font-bold text-lg">
                                 {runner?.ex?.availableToBack[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-pink-200 text-center text-xs">
+                            <td className="px-6 py-4 bg-pink-200 text-center text-xs">
                               <span className="font-bold text-lg">
                                 {runner?.ex?.availableToBack[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToBack[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4 bg-blue-200 text-center text-xs">
+                            <td className="px-6 py-4 bg-blue-200 text-center text-xs">
                               <span className="font-bold text-lg">
                                 {runner?.ex?.availableToLay[0]?.price ?? ""}
                               </span>
                               <br></br>
                               {runner?.ex?.availableToLay[0]?.size ?? ""}
                             </td>
-                            <td class="px-6 py-4">
+                            <td className="px-6 py-4">
                               <div>{runner?.min ?? ""}</div>
                               <div>{runner?.max ?? ""}</div>
                             </td>

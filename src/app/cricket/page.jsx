@@ -136,7 +136,7 @@ export default function Page(params) {
               </div>
             ) : (
               <div className="flex space-x-2 h-[80vh] mt-5 w-full">
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
                   <div className="sm:flex items-center z-50 h-auto p-5 overflow-auto w-auto relative">
                     {loadingE ? (
                       <div className="flex flex-col gap-4 w-full">
@@ -175,17 +175,17 @@ export default function Page(params) {
                       </div>
                     )}
                   </div>
-                  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800 relative">
+                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <caption className="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800 relative">
                       Events
                     </caption>
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                       <tr>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" className="px-6 py-3">
                           Event Name
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                          <span class="sr-only">View</span>
+                        <th scope="col" className="px-6 py-3">
+                          <span className="sr-only">View</span>
                         </th>
                       </tr>
                     </thead>
@@ -200,10 +200,10 @@ export default function Page(params) {
                             const isEventOpen = eventOpenDate < currentDate;
 
                             return (
-                              <tr class="bg-white dark:bg-gray-800">
+                              <tr className="bg-white dark:bg-gray-800">
                                 {detailsData.length ? (
                                   <div>
-                                    <td class="px-6 py-4 uppercase">
+                                    <td className="px-6 py-4 uppercase">
                                       {item?.event?.name ?? "Loading..."}
                                       <br></br>
                                       <br></br>
@@ -217,10 +217,10 @@ export default function Page(params) {
                                         </span>
                                       )}
                                     </td>
-                                    <td class="px-6 py-4 text-right">
+                                    <td className="px-6 py-4 text-right">
                                       <a
                                         href="#"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                         onClick={() => {
                                           router.push(
                                             `/markets?eventid=${item?.event?.id}`

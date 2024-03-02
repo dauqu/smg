@@ -58,18 +58,18 @@ export default function Sidebar(params) {
   return (
     <div className="inset-0 bottom-0 h-screen pt-[7vh] bg-[#0C0E2C] flex w-auto relative">
       {/* Sidebar 1 */}
-      <div class="simplebar-mask mt-2 border-r-[1px] border-slate-500 relative hidden sm:block">
+      <div className="simplebar-mask mt-2 border-r-[1px] border-slate-500 relative hidden sm:block">
         {loadingType !== false ? (
           <a
             className={`no-underline px-1 bg-slate-800 justify-center flex flex-col items-center space-y-2 p-2 skeleton rounded-none`}
             href={``}
           >
-            <span class="sports-category__icon flex flex-col items-center justify-center hover:bg-slate-800">
+            <span className="sports-category__icon flex flex-col items-center justify-center hover:bg-slate-800">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
                 height="18"
-                class="bi bi-dribbble fill-slate-300"
+                className="bi bi-dribbble fill-slate-300"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -78,7 +78,7 @@ export default function Sidebar(params) {
                 />
               </svg>
             </span>
-            <span class="text-slate-300 text-xs truncate w-[60px] text-center">
+            <span className="text-slate-300 text-xs truncate w-[60px] text-center">
               Loading...
             </span>
           </a>
@@ -92,12 +92,12 @@ export default function Sidebar(params) {
                   } no-underline px-1 hover:bg-slate-700 justify-center flex flex-col items-center space-y-2 p-2`}
                   href={`/category/${item.event_type}`}
                 >
-                  <span class="sports-category__icon flex flex-col items-center justify-center hover:bg-slate-800">
+                  <span className="sports-category__icon flex flex-col items-center justify-center hover:bg-slate-800">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="18"
                       height="18"
-                      class="bi bi-dribbble fill-slate-300"
+                      className="bi bi-dribbble fill-slate-300"
                       viewBox="0 0 16 16"
                     >
                       <path
@@ -106,7 +106,7 @@ export default function Sidebar(params) {
                       />
                     </svg>
                   </span>
-                  <span class="text-slate-300 text-xs truncate w-[60px] text-center">
+                  <span className="text-slate-300 text-xs truncate w-[60px] text-center">
                     {item.type_name ?? ""}
                   </span>
                 </a>
@@ -118,8 +118,8 @@ export default function Sidebar(params) {
       <div className={`max-w-[250px] min-w-[250px] bg-[#0C0E2C] h-full inset-0 bottom-0 overflow-y-scroll sm:block z-50 ${
         menuOpen ? "translate-x-0 fixed" : "hidden"
       }`}>
-        <div class="h-full relative">
-          <div class="">
+        <div className="h-full relative">
+          <div className="">
             {loadingCompetition !== true ? (
               <ul className="list pt-5">
                 {competition &&
