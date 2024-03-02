@@ -1,6 +1,12 @@
+"use client";
+import { atom, useAtom } from "jotai";
+import { openMenu } from "../store";
+
 export default function BottomNavigation() {
+  const [menuOpen, setMenuOpen] = useAtom(openMenu);
+
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-gray-800 sm:hidden">
+    <div className="fixed bottom-0 left-0 w-full bg-gray-800 sm:hidden z-50">
       <div className="flex justify-around items-center p-2">
         <a href="#" className="text-white flex flex-col items-center">
           <svg
@@ -34,7 +40,10 @@ export default function BottomNavigation() {
           </svg>
           <span className="text-xs">My Bets</span>
         </a>
-        <a href="#" className="text-white flex flex-col items-center justify-center p-2 rounded-xl bg-slate-200">
+        <div
+          className="text-white flex flex-col items-center justify-center p-2 rounded-xl bg-slate-200"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
@@ -48,7 +57,7 @@ export default function BottomNavigation() {
               d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
             />
           </svg>
-        </a>
+        </div>
         <a href="#" className="text-white flex flex-col items-center">
           <svg
             className="h-6 w-6"

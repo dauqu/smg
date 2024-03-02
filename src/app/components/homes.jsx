@@ -7,14 +7,48 @@ import { useSearchParams } from "next/navigation";
 import BottomNavigation from "./bottom-navigation";
 
 export default function Homes(params) {
-  const cards = [{}, {}, {}, {}, {}];
-
   const [markets, setMarkets] = useState([]);
   const [selectedTab, setSelectedTab] = useState("single");
   const [seletedBet, setSeletedBet] = useState({
     lay: [],
     back: [],
   });
+
+  // Place Bet
+  const [placingBet, setPlacingBet] = useState(false);
+  async function placeBet(params) {
+    setPlacingBet(true);
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/register`,
+        {
+          full_name: fullname,
+          email: email,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json", // Set JSON content type header
+          },
+        }
+      );
+      setTimeout(() => {
+        setPlacingBet(false);
+        toast(response?.data?.message, {
+          type: "success",
+        });
+      }, 1000);
+
+      // localStorage.setItem("token", response.data.token);
+    } catch (error) {
+      setTimeout(() => {
+        setPlacingBet(false);
+        toast(error?.response?.data?.message, {
+          type: "error",
+        });
+      }, 1000);
+    }
+  }
 
   async function getMarkets() {
     // Fetch axios data
@@ -115,7 +149,7 @@ export default function Homes(params) {
         <div className="w-full bg-slate-200 h-[99vh] rounded-lg p-5 overflow-auto pt-[8vh] mt-10 sm:mt-2">
           <img
             src="https://www.onlinebookbazar.com/assets/images/frontend/banner/64a55730164b11688557360.jpg"
-            className="h-[25vh] rounded-xl"
+            className="h-[10vh] md:h-[25vh] rounded-xl"
           />
           {/*  */}
           <div class="col-12 mt-5 bg-white rounded-md py-1">
@@ -148,7 +182,10 @@ export default function Homes(params) {
               {data.length > 0 ? (
                 <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-cols-1 gap-4 mt-5">
                   {data?.map((item, index) => (
-                    <div className="p-4 bg-white shadow-sm rounded-xl min-w-[100px]">
+                    <div
+                      className="p-4 bg-white shadow-sm rounded-xl min-w-[100px]"
+                      key={index}
+                    >
                       {/* Top bar */}
                       <div className="flex justify-around px-2">
                         {/* {item.market_type.} */}
@@ -157,13 +194,21 @@ export default function Homes(params) {
                           {/* Avator */}
                           <div className="avatar placeholder">
                             <div className="text-neutral-content rounded-xl w-12 border-2 border-slate-200 bg-white">
-                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" className="p-1" />
+                              <img
+                                src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg"
+                                className="p-1"
+                              />
                             </div>
                           </div>
                           {/* Short Name */}
-                          <span className="text-xs text-center">LAH</span>
+                          <span className="text-xs text-center">
+                            {item?.market_odds[0]?.runners[0]?.runner
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")}
+                          </span>
                           {/* Full Name */}
-                          <span className="text-[8px]">
+                          <span className="text-[10px]">
                             {item?.market_odds[0]?.runners[0]?.runner}
                           </span>
                         </div>
@@ -189,13 +234,21 @@ export default function Homes(params) {
                           {/* Avator */}
                           <div className="avatar placeholder">
                             <div className="text-neutral-content rounded-xl w-12 border-2 border-slate-200 bg-white">
-                              <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" className="p-1" />
+                              <img
+                                src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg"
+                                className="p-1"
+                              />
                             </div>
                           </div>
                           {/* Short Name */}
-                          <span className="text-xs text-center">LAH</span>
+                          <span className="text-xs text-center">
+                            {item?.market_odds[0]?.runners[1]?.runner
+                              .split(" ")
+                              .map((word) => word[0])
+                              .join("")}
+                          </span>
                           {/* Full Name */}
-                          <span className="text-[8px]">
+                          <span className="text-[10px]">
                             {item?.market_odds[0]?.runners[1]?.runner}
                           </span>
                         </div>
@@ -203,9 +256,9 @@ export default function Homes(params) {
                       {/* Center Div */}
                       <div className="flex w-full justify-between mt-3">
                         <select className="text-sm cursor-pointer">
-                          <option className="text-md font-bold outline-none border-none">
-                            Lahore Qalandars
-                          </option>
+                          {item?.market_odds[0]?.runners.map((item, index) => (
+                            <option value={item?.runner}>{item?.runner}</option>
+                          ))}
                         </select>
                         <span className="text-xs text-blue-500 cursor-pointer">
                           Markets
@@ -221,7 +274,7 @@ export default function Homes(params) {
                                 <button
                                   className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
                                     seletedBet.back.includes(item.price)
-                                      ? "bg-[#5671F5] text-white"
+                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
                                       : "bg-[#F8F9FA] hover:bg-[#F8F9FA]"
                                   }`}
                                   onClick={() => {
@@ -229,14 +282,14 @@ export default function Homes(params) {
                                     if (seletedBet.back.includes(item.price)) {
                                       setSeletedBet({
                                         ...seletedBet,
-                                        lay: seletedBet.back.filter(
+                                        back: seletedBet.back.filter(
                                           (x) => x !== item.price
                                         ),
                                       });
                                     } else {
                                       setSeletedBet({
                                         ...seletedBet,
-                                        lay: [...seletedBet.back, item.price],
+                                        back: [...seletedBet.back, item.price],
                                       });
                                     }
                                   }}
@@ -256,10 +309,10 @@ export default function Homes(params) {
                             (item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
-                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 bg-[#F8F9FA] hover:bg-[#F8F9FA] ${
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
                                     seletedBet.lay.includes(item.price)
-                                      ? "bg-[#5671F5] text-white"
-                                      : ""
+                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
+                                      : "bg-[#F8F9FA] hover:bg-[#F8F9FA]"
                                   }`}
                                   onClick={() => {
                                     //Set all selected items in lay and if already selected then remove it
@@ -310,7 +363,7 @@ export default function Homes(params) {
                       <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z" />
                     </svg>
                   </span>
-                  <span className="text-slate-400 font-bold text-xl">
+                  <span className="text-slate-400 font-bold text-xl text-center">
                     No game available in this category
                   </span>
                 </div>

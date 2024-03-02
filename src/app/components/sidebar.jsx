@@ -3,11 +3,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { openMenu } from "../store";
 
 export default function Sidebar(params) {
   const [type, setType] = useState([]);
   const [loadingType, setLoadingType] = useState(true);
-
+  const [menuOpen] = useAtom(openMenu);
+  
   const searchParams = useSearchParams();
   const competition_id = searchParams.get("id");
 
@@ -112,7 +115,9 @@ export default function Sidebar(params) {
         )}
       </div>
       {/* Sidebar 2 */}
-      <div className="max-w-[250px] min-w-[250px] bg-[#0C0E2C] h-full inset-0 bottom-0 overflow-y-scroll hidden sm:block">
+      <div className={`max-w-[250px] min-w-[250px] bg-[#0C0E2C] h-full inset-0 bottom-0 overflow-y-scroll sm:block z-50 ${
+        menuOpen ? "translate-x-0 fixed" : "hidden"
+      }`}>
         <div class="h-full relative">
           <div class="">
             {loadingCompetition !== true ? (
@@ -144,45 +149,6 @@ export default function Sidebar(params) {
               <div className="mt-5">
                 <a
                   className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center skeleton bg-slate-700 rounded-none`}
-                  href={`#`}
-                >
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral text-neutral-content rounded-lg w-6">
-                      {/* <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" /> */}L
-                    </div>
-                  </div>
-                  <span className="sub-category-drawer__text text-slate-300 text-xs truncate w-[200px] font-bold">
-                    Loading...
-                  </span>
-                </a>
-                <a
-                  className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center skeleton bg-[#0C0E2C] rounded-none`}
-                  href={`#`}
-                >
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral text-neutral-content rounded-lg w-6">
-                      {/* <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" /> */}L
-                    </div>
-                  </div>
-                  <span className="sub-category-drawer__text text-slate-300 text-xs truncate w-[200px] font-bold">
-                    Loading...
-                  </span>
-                </a>
-                <a
-                  className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center skeleton bg-slate-700 rounded-none`}
-                  href={`#`}
-                >
-                  <div className="avatar placeholder">
-                    <div className="bg-neutral text-neutral-content rounded-lg w-6">
-                      {/* <img src="https://www.onlinebookbazar.com/assets/images/team/65d9aadb4a5d31708763867.jpg" /> */}L
-                    </div>
-                  </div>
-                  <span className="sub-category-drawer__text text-slate-300 text-xs truncate w-[200px] font-bold">
-                    Loading...
-                  </span>
-                </a>
-                <a
-                  className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center skeleton bg-[#0C0E2C] rounded-none`}
                   href={`#`}
                 >
                   <div className="avatar placeholder">
