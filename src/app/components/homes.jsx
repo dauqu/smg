@@ -5,6 +5,7 @@ import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import BottomNavigation from "./bottom-navigation";
+import { toast } from "react-toastify";
 
 export default function Homes(params) {
   const [markets, setMarkets] = useState([]);
@@ -16,38 +17,37 @@ export default function Homes(params) {
 
   // Place Bet
   const [placingBet, setPlacingBet] = useState(false);
-  async function placeBet(params) {
+  async function placeBet() {
     setPlacingBet(true);
-    try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/register`,
+    await axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/bet`,
         {
-          full_name: fullname,
-          email: email,
-          password: password,
+          bet_amount: "1000",
+          bet_type: "single",
+          bet_number: "1",
         },
         {
           headers: {
             "Content-Type": "application/json", // Set JSON content type header
+            "x-auth-token": localStorage.getItem("token"),
           },
         }
-      );
-      setTimeout(() => {
+      )
+      .then((res) => {
         setPlacingBet(false);
-        toast(response?.data?.message, {
+        toast(res?.data?.message, {
           type: "success",
         });
-      }, 1000);
-
-      // localStorage.setItem("token", response.data.token);
-    } catch (error) {
-      setTimeout(() => {
+      })
+      .catch((error) => {
         setPlacingBet(false);
         toast(error?.response?.data?.message, {
           type: "error",
         });
-      }, 1000);
-    }
+      });
+
+    // localStorage.setItem("token", response.data.token);
   }
 
   async function getMarkets() {
@@ -540,8 +540,12 @@ export default function Homes(params) {
             </div>
             <div className="divider h-1"></div>
             <div className="w-full justify-start">
-              <button className="btn btn-md btn-neutral rounded-md w-full no-animation">
-                Place a Bid
+              <button
+                className="btn btn-md btn-neutral rounded-md w-full no-animation disabled:bg-slate-700 disabled:text-white"
+                onClick={placeBet}
+                disabled={placingBet}
+              >
+                {placingBet ? "Please Wait..." : "Place Bet"}
               </button>
             </div>
           </div>
