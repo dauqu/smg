@@ -14,6 +14,7 @@ export default function Homes(params) {
   const [selectedTab, setSelectedTab] = useState("single");
 
   const [seletedBet, setSeletedBet] = useAtom(selectedBet);
+  const [stack, setStack] = useState(0); // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
   // Place Bet
   const [placingBet, setPlacingBet] = useState(false);
@@ -269,7 +270,7 @@ export default function Homes(params) {
                         <span className="text-xs">Back</span>
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.back?.map(
-                            (item, index) => (
+                            (back_item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
                                   className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 $`}
@@ -280,18 +281,19 @@ export default function Homes(params) {
                                       ...seletedBet,
                                       {
                                         event_name: item?.event_name,
-                                        market_name: item?.market_name,
+                                        market_name:
+                                          item?.market_odds[0].market,
                                         runner_name: item?.runner_name,
-                                        back: item?.back,
-                                        lay: item?.lay,
+                                        price: back_item?.price,
+                                        type: "back",
                                       },
                                     ]);
                                   }}
                                 >
-                                  {item.price ?? 0}
+                                  {back_item.price ?? 0}
                                 </button>
                                 <span className="text-xs">
-                                  {item.size ?? 0}
+                                  {back_item.size ?? 0}
                                 </span>
                               </span>
                             )
@@ -300,11 +302,25 @@ export default function Homes(params) {
                         <span className="text-xs">Lay</span>
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.back?.map(
-                            (item, index) => (
+                            (lay_item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
                                   className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 `}
-                                  onClick={() => {}}
+                                  onClick={() => {
+                                    console.log(seletedBet);
+                                    //Append data in array
+                                    setSeletedBet([
+                                      ...seletedBet,
+                                      {
+                                        event_name: item?.event_name,
+                                        market_name:
+                                          item?.market_odds[0].market,
+                                        runner_name: item?.runner_name,
+                                        price: lay_item?.price,
+                                        type: "lay",
+                                      },
+                                    ]);
+                                  }}
                                 >
                                   {item.price ?? 0}
                                 </button>
@@ -500,9 +516,15 @@ export default function Homes(params) {
                     </div>
                     {/* Left */}
                     <div className="flex flex-col justify-start items-start">
-                      <span className="font-bold">ATM vs ATB</span>
-                      <span className="text-sm">Exact Number of Goal</span>
-                      <span className="text-sm">1.8</span>
+                      <span className="font-bold text-left">
+                        {item?.event_name}
+                      </span>
+                      <span className="text-sm">
+                        Exact Number of Goal {stack}
+                      </span>
+                      <span className="text-sm">
+                        {item.type} - {item?.price}
+                      </span>
                     </div>
 
                     {/* Right */}
@@ -519,8 +541,10 @@ export default function Homes(params) {
                 <span className="flex flex-col max-w-40 rounded-md bg-white px-2 py-1 outline-1 outline-slate-800 outline-dashed">
                   <input
                     className="rounded-md text-sm w-full outline-none"
-                    type="text"
+                    type="number"
                     placeholder="0.0"
+                    value={stack}
+                    onChange={(e) => setStack(e.target.value)}
                   />
                   <label className="text-slate-800 text-xs uppercase mt-2">
                     Stake

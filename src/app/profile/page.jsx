@@ -264,19 +264,19 @@ export default function page() {
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                   <tr>
                     <th scope="col" className="px-4 py-3">
-                      Product name
+                      Market Name
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Category
+                      Bet Amount
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Brand
+                      Bet Type
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Description
+                      Bet Number
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Price
+                      Status
                     </th>
                     <th scope="col" className="px-4 py-3">
                       <span className="sr-only">Actions</span>
@@ -290,12 +290,12 @@ export default function page() {
                         scope="row"
                         className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        Apple iMac 27&#34;
+                        Bangladesh v Sri Lanka
                       </th>
-                      <td className="px-4 py-3">PC</td>
-                      <td className="px-4 py-3">Apple</td>
-                      <td className="px-4 py-3">300</td>
-                      <td className="px-4 py-3">$2999</td>
+                      <td className="px-4 py-3">{item.bet_amount ?? ""}</td>
+                      <td className="px-4 py-3">{item.bet_type ?? ""}</td>
+                      <td className="px-4 py-3">{item.bet_number ?? ""}</td>
+                      <td className="px-4 py-3">{item.status ?? ""}</td>
                       <td className="px-4 py-3 flex items-center justify-end">
                         <button
                           id="apple-imac-27-dropdown-button"
