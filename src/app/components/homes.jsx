@@ -298,7 +298,7 @@ export default function Homes(params) {
                         </div>
                         <span className="text-xs">Lay</span>
                         <div className="flex overflow-auto space-x-2">
-                          {item?.market_odds[0]?.runners[0]?.back?.map(
+                          {item?.market_odds[0]?.runners[0]?.lay?.map(
                             (lay_item, index) => (
                               <span className="flex flex-col justify-center items-center space-y-1">
                                 <button
