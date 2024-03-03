@@ -255,7 +255,7 @@ export default function Homes(params) {
                       <div className="flex w-full justify-between mt-3">
                         <select className="text-sm cursor-pointer">
                           {item?.market_odds[0]?.runners.map((item, index) => (
-                            <option value={item?.runner}>{item?.runner}</option>
+                            <option key={index} value={item?.runner}>{item?.runner}</option>
                           ))}
                         </select>
                         <span className="text-xs text-blue-500 cursor-pointer">
@@ -268,7 +268,7 @@ export default function Homes(params) {
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.back?.map(
                             (back_item, index) => (
-                              <span className="flex flex-col justify-center items-center space-y-1">
+                              <span className="flex flex-col justify-center items-center space-y-1" key={index}>
                                 <button
                                   className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 $`}
                                   onClick={() => {
@@ -300,7 +300,7 @@ export default function Homes(params) {
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.lay?.map(
                             (lay_item, index) => (
-                              <span className="flex flex-col justify-center items-center space-y-1">
+                              <span className="flex flex-col justify-center items-center space-y-1" key={index}>
                                 <button
                                   className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 `}
                                   onClick={() => {
@@ -489,7 +489,7 @@ export default function Homes(params) {
               {/* Delete ICON */}
               <div className="space-y-2 w-full overflow-auto max-h-[55vh]">
                 {seletedBet?.map((item, index) => (
-                  <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5">
+                  <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5" key={index}>
                     <div
                       className=""
                       onClick={() => {

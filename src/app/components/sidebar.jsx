@@ -85,8 +85,9 @@ export default function Sidebar(params) {
         ) : (
           <div>
             {type &&
-              type.map((item) => (
+              type.map((item, index) => (
                 <a
+                key={index}
                   className={`${
                     item.event_type === "4" ? "bg-slate-700" : ""
                   } no-underline px-1 hover:bg-slate-700 justify-center flex flex-col items-center space-y-2 p-2`}
@@ -125,7 +126,7 @@ export default function Sidebar(params) {
                 {competition &&
                   competition.map((item, index) => (
                     <a
-                      key={item._id}
+                      key={index}
                       className={`hover:bg-slate-700 py-2 px-4 no-underline text-slate-400 space-x-2 flex items-center ${
                         competition_id === item.id ? "bg-slate-700" : ""
                       }`}

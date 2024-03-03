@@ -113,15 +113,15 @@ export default function Page(params) {
             </div>
           ) : (
             <div className="p-2 w-full relative">
-              {data.map((market) => (
-                <div key={market.marketId}>
+              {data.map((market, index) => (
+                <div key={index}>
                   <h2 className="underline font-bold text-xl">
                     {market.marketName}
                   </h2>
                   <p>Total Matched: {market.totalMatched}</p>
                   <ul className="flex space-x-2 mt-5 items-center justify-center overflow-scroll w-full">
-                    {market.runners.map((runner) => (
-                      <div>
+                    {market.runners.map((runner, index) => (
+                      <div key={index}>
                         <li
                           key={runner.selectionId}
                           className="btn btn-sm no-animation"
@@ -151,8 +151,8 @@ export default function Page(params) {
             <div className="flex space-x-2 h-[60vh] mt-2 w-full overflow-scroll">
               <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
                 {myEventData &&
-                  myEventData.map((event) => (
-                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                  myEventData.map((event, index) => (
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" key={index}>
                       <caption className="p-2 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                         Match Odds
                         <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
@@ -183,8 +183,8 @@ export default function Page(params) {
                           </th>
                         </tr>
                       </thead>
-                      {event?.runners?.map((runner) => (
-                        <tbody>
+                      {event?.runners?.map((runner, index) => (
+                        <tbody key={index}>
                           <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <th
                               scope="row"

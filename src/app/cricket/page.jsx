@@ -104,8 +104,9 @@ export default function Page(params) {
           ) : (
             <div className="flex space-x-2">
               {data &&
-                data.map((item) => (
+                data.map((item, index) => (
                   <button
+                  key={index}
                     className={`btn btn-sm no-animation ${
                       selected.eventType == item.eventType
                         ? "btn-active btn-outline"
@@ -158,9 +159,9 @@ export default function Page(params) {
                           }}
                         >
                           {myEventData &&
-                            myEventData.map((item) => (
+                            myEventData.map((item, index) => (
                               <option
-                                key={item?.competition?.id}
+                                key={index}
                                 value={item?.competition?.id}
                                 className={`btn btn-outline btn-wide no-animation btn-sm truncate ${
                                   selectedEvent == item?.competition?.id
@@ -192,7 +193,7 @@ export default function Page(params) {
                     {detailsData?.length !== 0 ? (
                       <tbody>
                         {detailsData &&
-                          detailsData.map((item) => {
+                          detailsData.map((item, index) => {
                             const eventOpenDate = new Date(
                               item?.event?.openDate
                             );
@@ -200,7 +201,7 @@ export default function Page(params) {
                             const isEventOpen = eventOpenDate < currentDate;
 
                             return (
-                              <tr className="bg-white dark:bg-gray-800">
+                              <tr className="bg-white dark:bg-gray-800" key={index}>
                                 {detailsData.length ? (
                                   <div>
                                     <td className="px-6 py-4 uppercase">
