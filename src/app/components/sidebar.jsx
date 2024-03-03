@@ -18,7 +18,7 @@ export default function Sidebar(params) {
     setLoadingType(true);
     // Fetch axios data
     await axios
-      .get("http://65.20.66.239:4000/type/all")
+      .get("https://api.dimondbookbazar.com/type/all")
       .then((res) => {
         setType(res?.data?.types);
         // console.log(res.data);
@@ -38,7 +38,7 @@ export default function Sidebar(params) {
     setLoadingCompetition(true);
     // Fetch axios data
     await axios
-      .get("http://65.20.66.239:4000/competition/id/4")
+      .get("https://api.dimondbookbazar.com/competition/id/4")
       .then((res) => {
         setCompetition(res?.data?.competitions);
         // console.log(res.data);

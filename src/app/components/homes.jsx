@@ -52,7 +52,7 @@ export default function Homes(params) {
     // Fetch axios data
     await axios
       .get(
-        "http://65.20.66.239:4000/api/v1/listMarketBookOdds?market_id=1.224699772"
+        "https://api.dimondbookbazar.com/api/v1/listMarketBookOdds?market_id=1.224699772"
       )
       .then((res) => {
         setMarkets(res?.data);
@@ -73,7 +73,7 @@ export default function Homes(params) {
   async function fetchData() {
     setLoading(true);
     await axios
-      .get(`http://65.20.66.239:4000/event/id/${competition_id}`)
+      .get(`https://api.dimondbookbazar.com/event/id/${competition_id}`)
       .then((res) => {
         setLoading(false);
         setData(res?.data);
@@ -86,7 +86,7 @@ export default function Homes(params) {
 
   async function refreshData() {
     await axios
-      .get(`http://65.20.66.239:4000/event/id/${competition_id}`)
+      .get(`https://api.dimondbookbazar.com/event/id/${competition_id}`)
       .then((res) => {
         setData(res?.data);
         console.log(res.data);
