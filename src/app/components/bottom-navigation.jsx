@@ -1,6 +1,7 @@
 "use client";
 import { atom, useAtom } from "jotai";
 import { openMenu } from "../store";
+import Link from "next/link";
 
 export default function BottomNavigation() {
   const [menuOpen, setMenuOpen] = useAtom(openMenu);
@@ -8,7 +9,7 @@ export default function BottomNavigation() {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-gray-800 sm:hidden z-50">
       <div className="flex justify-around items-center p-2">
-        <a href="#" className="text-white flex flex-col items-center">
+        <Link href="/" className="text-white flex flex-col items-center">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -23,8 +24,8 @@ export default function BottomNavigation() {
             />
           </svg>
           <span className="text-xs">Bet Now</span>
-        </a>
-        <a href="#" className="text-white flex flex-col items-center">
+        </Link>
+        <Link href="/profile" className="text-white flex flex-col items-center">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -39,7 +40,7 @@ export default function BottomNavigation() {
             />
           </svg>
           <span className="text-xs">My Bets</span>
-        </a>
+        </Link>
         <div
           className="text-white flex flex-col items-center justify-center p-1 rounded-xl bg-slate-200"
           // onClick={() => setMenuOpen(!menuOpen)}
@@ -75,7 +76,7 @@ export default function BottomNavigation() {
             </svg>
           </label>
         </div>
-        <a href="#" className="text-white flex flex-col items-center">
+        <Link href="/bet-slip" className="text-white flex flex-col items-center">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -90,8 +91,8 @@ export default function BottomNavigation() {
             />
           </svg>
           <span className="text-xs">Bet Slip</span>
-        </a>
-        <a href="#" className="text-white flex flex-col items-center">
+        </Link>
+        <Link href="/login" className="text-white flex flex-col items-center">
           <svg
             className="h-6 w-6"
             fill="none"
@@ -106,7 +107,7 @@ export default function BottomNavigation() {
             />
           </svg>
           <span className="text-xs">Login</span>
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/header";
 import axios from "axios";
+import BottomNavigation from "../components/bottom-navigation";
 
 export default function page() {
   const [data, setData] = React.useState([]);
@@ -456,6 +457,7 @@ export default function page() {
           </div>
         </div>
       </section>
+      <BottomNavigation/>
     </div>
   );
 }

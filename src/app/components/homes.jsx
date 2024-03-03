@@ -144,7 +144,7 @@ export default function Homes(params) {
       <div className="flex relative">
         <Sidebar />
         {/* Home */}
-        <div className="w-full bg-slate-200 h-[99vh] rounded-lg p-5 overflow-auto pt-[8vh] mt-10 sm:mt-2">
+        <div className="w-full bg-slate-200 h-[90vh] rounded-lg p-5 overflow-auto pt-[8vh] mt-10 sm:mt-2">
           <img
             src="https://www.onlinebookbazar.com/assets/images/frontend/banner/64a55730164b11688557360.jpg"
             className="h-[10vh] md:h-[25vh] rounded-xl"

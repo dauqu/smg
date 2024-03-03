@@ -5,6 +5,7 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import axios from "axios";
+import BottomNavigation from "../components/bottom-navigation";
 
 export default function page() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -156,6 +157,7 @@ export default function page() {
           </div>
         </div>
       </section>
+      <BottomNavigation/>
     </div>
   );
 }
