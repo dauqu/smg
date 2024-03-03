@@ -24,9 +24,8 @@ export default function Homes(params) {
       .post(
         `${process.env.NEXT_PUBLIC_API_URL}/bet`,
         {
-          bet_amount: "1000",
-          bet_type: "single",
-          bet_number: "1",
+          data: seletedBet,
+          stack: stack,
         },
         {
           headers: {
@@ -47,8 +46,6 @@ export default function Homes(params) {
           type: "error",
         });
       });
-
-    // localStorage.setItem("token", response.data.token);
   }
 
   async function getMarkets() {
@@ -322,10 +319,10 @@ export default function Homes(params) {
                                     ]);
                                   }}
                                 >
-                                  {item.price ?? 0}
+                                  {lay_item.price ?? 0}
                                 </button>
                                 <span className="text-xs">
-                                  {item.size ?? 0}
+                                  {lay_item.size ?? 0}
                                 </span>
                               </span>
                             )

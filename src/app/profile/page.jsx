@@ -273,7 +273,7 @@ export default function page() {
                       Bet Type
                     </th>
                     <th scope="col" className="px-4 py-3">
-                      Bet Number
+                      Bet Number (STack)
                     </th>
                     <th scope="col" className="px-4 py-3">
                       Status
@@ -290,11 +290,11 @@ export default function page() {
                         scope="row"
                         className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
-                        Bangladesh v Sri Lanka
+                        {item?.event_name ?? ""}
                       </th>
                       <td className="px-4 py-3">{item.bet_amount ?? ""}</td>
-                      <td className="px-4 py-3">{item.bet_type ?? ""}</td>
-                      <td className="px-4 py-3">{item.bet_number ?? ""}</td>
+                      <td className="px-4 py-3">{item.type ?? ""}</td>
+                      <td className="px-4 py-3">{item.stack ?? ""}</td>
                       <td className="px-4 py-3">{item.status ?? ""}</td>
                       <td className="px-4 py-3 flex items-center justify-end">
                         <button
