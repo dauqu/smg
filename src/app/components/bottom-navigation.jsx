@@ -41,22 +41,39 @@ export default function BottomNavigation() {
           <span className="text-xs">My Bets</span>
         </a>
         <div
-          className="text-white flex flex-col items-center justify-center p-2 rounded-xl bg-slate-200"
-          onClick={() => setMenuOpen(!menuOpen)}
+          className="text-white flex flex-col items-center justify-center p-1 rounded-xl bg-slate-200"
+          // onClick={() => setMenuOpen(!menuOpen)}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="30"
-            height="30"
-            fill="#000000"
-            className="bi bi-list"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+          <label className="btn btn-circle swap swap-rotate">
+            {/* this hidden checkbox controls the state */}
+            <input
+              type="checkbox"
+              checked={menuOpen}
+              onChange={() => setMenuOpen(!menuOpen)}
             />
-          </svg>
+
+            {/* hamburger icon */}
+            <svg
+              className="swap-off fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 512 512"
+            >
+              <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
+            </svg>
+
+            {/* close icon */}
+            <svg
+              className="swap-on fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              width="32"
+              height="32"
+              viewBox="0 0 512 512"
+            >
+              <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
+            </svg>
+          </label>
         </div>
         <a href="#" className="text-white flex flex-col items-center">
           <svg

@@ -255,7 +255,9 @@ export default function Homes(params) {
                       <div className="flex w-full justify-between mt-3">
                         <select className="text-sm cursor-pointer">
                           {item?.market_odds[0]?.runners.map((item, index) => (
-                            <option key={index} value={item?.runner}>{item?.runner}</option>
+                            <option key={index} value={item?.runner}>
+                              {item?.runner}
+                            </option>
                           ))}
                         </select>
                         <span className="text-xs text-blue-500 cursor-pointer">
@@ -268,9 +270,22 @@ export default function Homes(params) {
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.back?.map(
                             (back_item, index) => (
-                              <span className="flex flex-col justify-center items-center space-y-1" key={index}>
+                              <span
+                                className="flex flex-col justify-center items-center space-y-1"
+                                key={index}
+                              >
                                 <button
-                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 $`}
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
+                                    seletedBet.find(
+                                      (ba) =>
+                                        ba?.event_name === item?.event_name &&
+                                        ba?.price === back_item.price &&
+                                        ba?.type === "back" &&
+                                        ba?.level === back_item?.level
+                                    )
+                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
+                                      : ""
+                                  }`}
                                   onClick={() => {
                                     console.log(seletedBet);
                                     //Append data in array
@@ -283,6 +298,7 @@ export default function Homes(params) {
                                         runner_name: item?.runner_name,
                                         price: back_item?.price,
                                         type: "back",
+                                        level: back_item?.level,
                                       },
                                     ]);
                                   }}
@@ -300,11 +316,23 @@ export default function Homes(params) {
                         <div className="flex overflow-auto space-x-2">
                           {item?.market_odds[0]?.runners[0]?.lay?.map(
                             (lay_item, index) => (
-                              <span className="flex flex-col justify-center items-center space-y-1" key={index}>
+                              <span
+                                className="flex flex-col justify-center items-center space-y-1"
+                                key={index}
+                              >
                                 <button
-                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 `}
+                                  className={`btn btn-sm w-[80px] h-[40px] no-animation rounded-md border border-1 border-slate-200 ${
+                                    seletedBet.find(
+                                      (la) =>
+                                        la?.event_name === item?.event_name &&
+                                        la?.price === lay_item.price &&
+                                        la?.type === "lay" &&
+                                        la?.level === lay_item?.level
+                                    )
+                                      ? "bg-[#5671F5] hover:bg-[#5671F5] text-white"
+                                      : ""
+                                  }`}
                                   onClick={() => {
-                                    console.log(seletedBet);
                                     //Append data in array
                                     setSeletedBet([
                                       ...seletedBet,
@@ -315,6 +343,7 @@ export default function Homes(params) {
                                         runner_name: item?.runner_name,
                                         price: lay_item?.price,
                                         type: "lay",
+                                        level: lay_item?.level,
                                       },
                                     ]);
                                   }}
@@ -489,7 +518,10 @@ export default function Homes(params) {
               {/* Delete ICON */}
               <div className="space-y-2 w-full overflow-auto max-h-[55vh]">
                 {seletedBet?.map((item, index) => (
-                  <div className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5" key={index}>
+                  <div
+                    className="w-full border-2 border-slate-200 p-2 rounded-lg flex items-center space-x-5"
+                    key={index}
+                  >
                     <div
                       className=""
                       onClick={() => {
@@ -513,7 +545,7 @@ export default function Homes(params) {
                     </div>
                     {/* Left */}
                     <div className="flex flex-col justify-start items-start">
-                      <span className="font-bold text-left">
+                      <span className="font-bold text-left select-none">
                         {item?.event_name}
                       </span>
                       <span className="text-sm">
